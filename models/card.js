@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const cardSchema = new Schema({
+    firstName: String,
+    lastName: String,
     cardType: String,
     companyName: String,
     email: String,
@@ -12,8 +14,6 @@ const cardSchema = new Schema({
     state: String,
     zipcode: {
         type: Number,
-        required: true,
-        unique: true,
         validate: {
             validator: Number.isInteger,
             message: '{VALUE} is not an integer value'

@@ -6,7 +6,8 @@ const cardSchema = require("./card");
 const userSchema = new Schema({
     username: { type: String, required: true },
     password: { type: String, required: true },
-    name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     cardType: String,
     companyName: String,
     email: String,
@@ -17,8 +18,6 @@ const userSchema = new Schema({
     state: String,
     zipcode: {
         type: Number,
-        required: true,
-        unique: true,
         validate: {
             validator: Number.isInteger,
             message: '{VALUE} is not an integer value'
