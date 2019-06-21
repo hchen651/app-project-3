@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Container from "../../components/Container";
-import Col from "../../components/Col";
-import Row from "../../components/Row";
+import { Col, Row, Container } from "../../components/Grid";
 
 const Signup = () => {
   const [username, setUsername] = useState();
