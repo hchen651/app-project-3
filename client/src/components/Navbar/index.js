@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <Link className="navbar-brand" to="/">
-        Rolodex (Name Pending)
+        Imprint
       </Link>
       <div>
         <ul className="navbar-nav">
@@ -25,10 +25,18 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/signup"
-              className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}
+              to="/signin"
+              className={window.location.pathname === "/signin" ? "nav-link active" : "nav-link"}
             >
-              Sign Up
+              Sign In
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/contact"
+              className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"}
+            >
+              Contact
             </Link>
           </li>
         </ul>
