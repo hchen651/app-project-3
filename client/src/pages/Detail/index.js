@@ -8,16 +8,18 @@ const Detail = () => {
 
     return (
         <div>
-            <div className="mt-4">
-                <h2>Card Detail</h2>
-            </div>
             <Container>
+                <Row>
+                    <Col size="md-12">
+                        <h2>Card Detail</h2>
+                    </Col>
+                </Row>
                 <Row>
                     <Col size="md-6">
                         <BusinessCard />
                     </Col>
                     <Col size="md-6">
-
+                        {/* QR code image here */}
                     </Col>
                 </Row>
             </Container>

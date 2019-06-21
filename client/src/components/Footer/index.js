@@ -4,7 +4,7 @@ import "./style.css";
 function Footer() {
   return (
     <footer className="footer">
-      <span>Imprint 2019. All Rights Reserved</span>
+      <span>Imprint © 2019. All Rights Reserved</span>
     </footer>
   );
 }
