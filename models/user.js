@@ -15,8 +15,16 @@ const userSchema = new Schema({
     street: String,
     city: String,
     state: String,
-    zipcode: Integer,
-    cards: [cardSchema]
+    zipcode: {
+        type: Number,
+        required: true,
+        unique: true,
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value'
+        }
+    },
+    //cards: [cardSchema]
 });
 
 const User = mongoose.model("User", userSchema);

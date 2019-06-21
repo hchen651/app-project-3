@@ -22,20 +22,17 @@ function App() {
   document.title = "Rolodex (Name Pending)";
   return (
     <Router>
+      <Navbar />
       <div>
-        <Navbar />
-        <Wrapper>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/detail" component={Detail} />
-          <Route exact path="/collection" component={Collection} />
-          <Route exact path="/newcard" component={NewCard} />
-        </Wrapper>
-
-        <Footer />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/detail" component={Detail} />
+        <Route exact path="/collection" component={Collection} />
+        <Route exact path="/newcard" component={NewCard} />
       </div>
+
     </Router>
   );
 }
