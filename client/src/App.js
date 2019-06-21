@@ -19,7 +19,7 @@ import Wrapper from "./components/Wrapper";
 import "./App.css";
 
 function App() {
-  document.title = "Rolodex (Name Pending)";
+  document.title = "Imprint";
   return (
     <Router>
       <div>

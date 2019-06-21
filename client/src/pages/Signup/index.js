@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+// React Components
 import { Col, Row, Container } from "../../components/Grid";
 
 const Signup = () => {
@@ -14,7 +16,7 @@ const Signup = () => {
   return (
     <div>
       <div className="mt-4">
-        <h2>Signup</h2>
+        <h2>Sign Up</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <Container className="mt-3 px-5">
