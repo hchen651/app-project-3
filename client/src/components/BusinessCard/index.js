@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
-        width: 200,
+        width: 600,
     },
     dense: {
         marginTop: 19,
@@ -28,6 +28,13 @@ export default function TextFields() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         name: '',
+        companyName: '',
+        position: '',
+        email: '',
+        phone: '',
+        website: '',
+        address: '',
+        profile: '',
     });
 
     const handleChange = name => event => {
@@ -36,15 +43,31 @@ export default function TextFields() {
 
     return (
         <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="standard-name"
-            label="Name"
-            fullWidth
-            className={classes.textField}
-            value={values.name}
-            onChange={handleChange('name')}
-            margin="normal"
-          />
+            <TextField
+                required
+                id="standard-required"
+                label="Name"
+                className={classes.textField}
+                value={values.name}
+                onChange={handleChange('name')}
+                margin="normal"
+            />
+            <TextField
+                id="standard-uncontrolled"
+                label="Company Name"
+                className={classes.textField}
+                value={values.companyName}
+                onChange={handleChange('companyName')}
+                margin="normal"
+            />
+            <TextField
+                id="standard-uncontrolled"
+                label="Title/Position"
+                className={classes.textField}
+                value={values.position}
+                onChange={handleChange('position')}
+                margin="normal"
+            />
         </form>
     );
 }
