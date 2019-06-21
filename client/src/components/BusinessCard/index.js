@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Material UI
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -24,12 +26,20 @@ const useStyles = makeStyles(theme => ({
 
 export default function TextFields() {
     const classes = useStyles();
+    const [values, setValues] = React.useState({
+        name: '',
+    });
+
+    const handleChange = name => event => {
+        setValues({ ...values, [name]: event.target.value });
+    };
 
     return (
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
             id="standard-name"
             label="Name"
+            fullWidth
             className={classes.textField}
             value={values.name}
             onChange={handleChange('name')}
