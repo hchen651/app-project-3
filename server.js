@@ -1,10 +1,17 @@
 const express = require("express");
-
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Bodyparser middleware
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/imprintdb");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_mf63n599:pp5dovtcjhr89fn4a7ueount1j@ds261486.mlab.com:61486/heroku_mf63n599");
 
 // Start the API server
 app.listen(PORT, function() {
