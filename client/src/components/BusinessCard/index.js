@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
-        width: 600,
+        width: 200,
     },
     dense: {
         marginTop: 19,
     },
     menu: {
-        width: 200,
+        width: 400,
     },
 }));
 
@@ -79,7 +79,7 @@ export default function TextFields() {
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
-                  ))}
+                ))}
             </TextField>
             <TextField
                 required
@@ -107,7 +107,7 @@ export default function TextFields() {
                 margin="normal"
             />
             <TextField
-                id="standard-uncontrolled"
+                id="standard-required"
                 label="Email"
                 className={classes.textField}
                 value={values.position}
@@ -118,11 +118,22 @@ export default function TextFields() {
                 id="standard-uncontrolled"
                 label="Phone"
                 className={classes.textField}
+                onChange={handleChange('phone')}
+                value={values.position}
+                margin="normal"
+            />  
+            <TextField
+                id="standard-uncontrolled"
+                label="Website"
+                className={classes.textField}
+                onChange={handleChange('website')}
                 value={values.position}
                 margin="normal"
             />  
 
 
+
+            
              <TextField
                 id="standard-multiline-static"
                 label="Note"
