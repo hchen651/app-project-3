@@ -23,32 +23,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const accounts = [
-    {
-      value: 'personal',
-      label: 'Personal',
-    },
-    {
-      value: 'company',
-      label: 'Company',
-    },
-    {
-      value: 'small business',
-      label: 'Small Business',
-    },
+    { value: 'personal', label: 'Personal'},
+    { value: 'company', label: 'Company'},
+    { value: 'small business', label: 'Small Business'},
+];
+
+const states = [
+    { value: 'NY', label: 'NY' },
 ];
 
 export default function TextFields() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        account: '',
-        name: '',
+        account: 'personal',
+        firstName: '',
+        lastName: '',
         company: '',
-        position: '',
+        titlePosition: '',
         email: '',
         phone: '',
         website: '',
-        address: '',
-        profile: '',
+        addressStreet: '',
+        addressCity: '',
+        addressState: 'NY',
+        addressZipcode: '',
     });
 
     const handleChange = name => event => {
@@ -58,20 +56,22 @@ export default function TextFields() {
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <TextField
-                id="standard-select-account"
-                style={{ margin: 2, marginBottom: 10}}
                 select
-                fullWidth
+                id="account"
+                style={{ margin: 2, marginBottom: 10}}
                 label="Select"
+                fullWidth
                 className={classes.textField}
                 value={values.account}
                 onChange={handleChange('account')}
                 SelectProps={{
-                MenuProps: {
-                    className: classes.menu,
-                },
+                    MenuProps: {
+                        className: classes.menu,
+                    },
                 }}
                 margin="normal"
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
                 >
                 {accounts.map(option => (
                     <MenuItem key={option.value} value={option.value}>
@@ -82,90 +82,161 @@ export default function TextFields() {
 
             <TextField
                 required
-                id="standard-required"
-                style={{ width: "49%", marginBottom: 2 }}
-                placeholder="First Name*"
+                id="first-name"
+                style={{ margin: 2, width: "48.5%" }}
+                label="First Name"
+                className={classes.textField}
+                value={values.firstName}
+                onChange={handleChange('first-name')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <TextField
                 required
-                id="standard-required"
-                style={{ marginLeft: 2, width: "50%", marginBottom: 2 }}
-                placeholder="Last Name*"
+                id="last-name"
+                style={{ margin: 2, width: "50%" }}
+                label="Last Name"
+                className={classes.textField}
+                value={values.lastName}
+                onChange={handleChange('last-name')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <TextField
-                id="standard-full-width"
+                id="company"
                 style={{ margin: 2 }}
                 placeholder="Company"
                 fullWidth
+                className={classes.textField}
+                value={values.company}
+                onChange={handleChange('company')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <TextField
-                id="standard-full-width"
+                id="title-position"
                 style={{ margin: 2 }}
                 placeholder="Title/Position"
                 fullWidth
+                className={classes.textField}
+                value={values.titlePosition}
+                onChange={handleChange('title-position')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <br />
 
             <TextField
                 required
-                id="standard-full-width"
+                id="email"
                 style={{ margin: 2 }}
                 placeholder="Email*"
                 fullWidth
+                className={classes.textField}
+                value={values.email}
+                onChange={handleChange('email')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <TextField
-                id="standard-full-width"
+                id="phone"
                 style={{ margin: 2 }}
                 placeholder="Phone"
                 fullWidth
+                className={classes.textField}
+                value={values.phone}
+                onChange={handleChange('phone')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <TextField
-                id="standard-full-width"
+                id="website"
                 style={{ margin: 2 }}
                 placeholder="Website"
                 fullWidth
+                className={classes.textField}
+                value={values.website}
+                onChange={handleChange('website')}
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
+            />
+            <br />
+            
+            <TextField
+                id="address-street"
+                style={{ margin: 2 }}
+                placeholder="Street"
+                fullWidth
+                className={classes.textField}
+                value={values.addressStreet}
+                onChange={handleChange('address-street')}
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
+            />
+            <TextField
+                id="address-city"
+                style={{ margin: 2, width: "45%"}}
+                placeholder="City"
+                className={classes.textField}
+                value={values.addressCity}
+                onChange={handleChange('address-city')}
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
+            />
+            <TextField
+                select
+                id="address-state"
+                style={{ margin: 2, width: "20%" }}
+                className={classes.textField}
+                value={values.addressState}
+                onChange={handleChange('address-state')}
+                SelectProps={{
+                    MenuProps: {
+                        className: classes.menu,
+                    },
                 }}
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
+            >
+                {states.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                ))}
+            </TextField>
+            <TextField
+                id="address-zipcode"
+                style={{ margin: 2, width: "32.5%" }}
+                placeholder="Zip Code"
+                className={classes.textField}
+                value={values.addressZipcode}
+                onChange={handleChange('address-zipcode')}
+                margin="normal"
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
             <br />
 
             <TextField
-                id="standard-full-width"
-                label="Notes"
+                id="notes"
                 style={{ margin: 2 }}
+                placeholder="Notes"
                 fullWidth
                 multiline
                 rows="4"
                 margin="normal"
-                InputLabelProps={{
-                shrink: true,
-                }}
+                InputLabelProps={{ shrink: true }}
+                InputProps={{ readOnly: true }}
             />
         </form>
     );
