@@ -14,6 +14,8 @@ const cardSchema = new Schema({
     state: String,
     zipcode: {
         type: Number,
+        min: [5, 'Please enter a valid ZIP code.'],
+        max: [5, 'Please enter a valid ZIP code.'],
         validate: {
             validator: Number.isInteger,
             message: '{VALUE} is not an integer value'

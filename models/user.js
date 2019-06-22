@@ -11,7 +11,15 @@ const userSchema = new Schema({
     cardType: String,
     companyName: String,
     email: String,
-    phone: String,
+    phone: {
+        type: Number,
+        min: [10, 'Please enter a valid phone number.'],
+        max: [10, 'Please enter a valid phone number.'],
+        validate: {
+            validator: Number.isInteger,
+            message: '{VALUE} is not an integer value'
+        }
+    },
     website: String,
     street: String,
     city: String,
