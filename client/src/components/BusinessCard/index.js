@@ -13,15 +13,12 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
     },
     textField: {
+        margin: theme.spacing(1),
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
-        width: 200,
     },
     dense: {
         marginTop: 19,
-    },
-    menu: {
-        width: 400,
     },
 }));
 
@@ -62,7 +59,9 @@ export default function TextFields() {
         <form className={classes.container} noValidate autoComplete="off">
             <TextField
                 id="standard-select-account"
+                style={{ margin: 2, marginBottom: 10}}
                 select
+                fullWidth
                 label="Select"
                 className={classes.textField}
                 value={values.account}
@@ -72,7 +71,6 @@ export default function TextFields() {
                     className: classes.menu,
                 },
                 }}
-                helperText="Please select one"
                 margin="normal"
                 >
                 {accounts.map(option => (
@@ -81,66 +79,93 @@ export default function TextFields() {
                     </MenuItem>
                 ))}
             </TextField>
+
             <TextField
                 required
                 id="standard-required"
-                label="Name"
-                className={classes.textField}
-                value={values.name}
-                onChange={handleChange('name')}
+                style={{ width: "49%", marginBottom: 2 }}
+                placeholder="First Name*"
                 margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
             />
             <TextField
-                id="standard-uncontrolled"
-                label="Company Name"
-                className={classes.textField}
-                value={values.company}
-                onChange={handleChange('company')}
-                margin="normal"
-            />
-            <TextField
-                id="standard-uncontrolled"
-                label="Title/Position"
-                className={classes.textField}
-                value={values.position}
-                onChange={handleChange('position')}
-                margin="normal"
-            />
-            <TextField
+                required
                 id="standard-required"
-                label="Email"
-                className={classes.textField}
-                value={values.position}
-                onChange={handleChange('email')}
+                style={{ marginLeft: 2, width: "50%", marginBottom: 2 }}
+                placeholder="Last Name*"
                 margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
             />
             <TextField
-                id="standard-uncontrolled"
-                label="Phone"
-                className={classes.textField}
-                onChange={handleChange('phone')}
-                value={values.position}
+                id="standard-full-width"
+                style={{ margin: 2 }}
+                placeholder="Company"
+                fullWidth
                 margin="normal"
-            />  
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
             <TextField
-                id="standard-uncontrolled"
-                label="Website"
-                className={classes.textField}
-                onChange={handleChange('website')}
-                value={values.position}
+                id="standard-full-width"
+                style={{ margin: 2 }}
+                placeholder="Title/Position"
+                fullWidth
                 margin="normal"
-            />  
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
+            <br />
 
+            <TextField
+                required
+                id="standard-full-width"
+                style={{ margin: 2 }}
+                placeholder="Email*"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
+            <TextField
+                id="standard-full-width"
+                style={{ margin: 2 }}
+                placeholder="Phone"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
+            <TextField
+                id="standard-full-width"
+                style={{ margin: 2 }}
+                placeholder="Website"
+                fullWidth
+                margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
+            />
+            <br />
 
-
-            
-             <TextField
-                id="standard-multiline-static"
-                label="Note"
+            <TextField
+                id="standard-full-width"
+                label="Notes"
+                style={{ margin: 2 }}
+                fullWidth
                 multiline
                 rows="4"
-                className={classes.textField}
                 margin="normal"
+                InputLabelProps={{
+                shrink: true,
+                }}
             />
         </form>
     );
