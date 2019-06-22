@@ -25,11 +25,27 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const accounts = [
+    {
+      value: 'personal',
+      label: 'Personal',
+    },
+    {
+      value: 'company',
+      label: 'Company',
+    },
+    {
+      value: 'small business',
+      label: 'Small Business',
+    },
+];
+
 export default function TextFields() {
     const classes = useStyles();
     const [values, setValues] = React.useState({
+        account: '',
         name: '',
-        companyName: '',
+        company: '',
         position: '',
         email: '',
         phone: '',
@@ -45,6 +61,27 @@ export default function TextFields() {
     return (
         <form className={classes.container} noValidate autoComplete="off">
             <TextField
+                id="standard-select-account"
+                select
+                label="Select"
+                className={classes.textField}
+                value={values.account}
+                onChange={handleChange('account')}
+                SelectProps={{
+                MenuProps: {
+                    className: classes.menu,
+                },
+                }}
+                helperText="Please select one"
+                margin="normal"
+                >
+                {accounts.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+            </TextField>
+            <TextField
                 required
                 id="standard-required"
                 label="Name"
@@ -57,8 +94,8 @@ export default function TextFields() {
                 id="standard-uncontrolled"
                 label="Company Name"
                 className={classes.textField}
-                value={values.companyName}
-                onChange={handleChange('companyName')}
+                value={values.company}
+                onChange={handleChange('company')}
                 margin="normal"
             />
             <TextField
@@ -67,6 +104,31 @@ export default function TextFields() {
                 className={classes.textField}
                 value={values.position}
                 onChange={handleChange('position')}
+                margin="normal"
+            />
+            <TextField
+                id="standard-uncontrolled"
+                label="Email"
+                className={classes.textField}
+                value={values.position}
+                onChange={handleChange('email')}
+                margin="normal"
+            />
+            <TextField
+                id="standard-uncontrolled"
+                label="Phone"
+                className={classes.textField}
+                value={values.position}
+                margin="normal"
+            />  
+
+
+             <TextField
+                id="standard-multiline-static"
+                label="Note"
+                multiline
+                rows="4"
+                className={classes.textField}
                 margin="normal"
             />
         </form>
