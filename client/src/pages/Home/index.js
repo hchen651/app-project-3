@@ -27,7 +27,7 @@ const Home = () => {
                 <Row>
                     <Col size="md-3"></Col>
                     <Col size="md-6">
-                        <Button>SIGN UP</Button>
+                        <Button href="/signup">SIGN UP</Button>
                     </Col>
                 </Row>
             </Container>

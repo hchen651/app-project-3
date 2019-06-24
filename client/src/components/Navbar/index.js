@@ -56,10 +56,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -100,26 +97,43 @@ export default function ButtonAppBar() {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
+  const fullList = side => (
     <div
-      className={classes.list}
+      className={classes.fullList}
       role="presentation"
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
         <ListItemLink href="/">
-          <ListItemText primary="Home" />
+          <ListItemText primary="Imprint" />
         </ListItemLink>
       </List>
+      {/* before login Navbar. need authentication */}
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItemLink href="/about">
+          <ListItemText primary="About" />
+        </ListItemLink>
+        <ListItemLink href="/login">
+          <ListItemText primary="Log In" />
+        </ListItemLink>        
+        <ListItemLink href="/contact">
+          <ListItemText primary="Contact Us" />
+        </ListItemLink>
+      </List>
+      {/* after login Navbar */}
+      <Divider />
+      <List>
+        <ListItemLink href="/collection">
+          <ListItemText primary="Collection" />
+        </ListItemLink>
+        <ListItemLink href="/profile">
+          <ListItemText primary="My Profile" />
+        </ListItemLink>        
+        <ListItemLink href="/home">
+          <ListItemText primary="logout" />
+        </ListItemLink>
       </List>
     </div>
   );
@@ -128,16 +142,15 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('left', true)}>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('top', true)}>
             <MenuIcon />
           </IconButton>
-          <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-            {sideList('left')}
+          <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
+            {fullList('top')}
           </Drawer>
           <Typography variant="h6" className={classes.title}>
             Imprint
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
