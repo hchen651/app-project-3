@@ -115,8 +115,8 @@ export default function ButtonAppBar() {
         <ListItemLink href="/about">
           <ListItemText primary="About" />
         </ListItemLink>
-        <ListItemLink href="/login">
-          <ListItemText primary="Log In" />
+        <ListItemLink href="/signin">
+          <ListItemText primary="Sign In" />
         </ListItemLink>        
         <ListItemLink href="/contact">
           <ListItemText primary="Contact Us" />
