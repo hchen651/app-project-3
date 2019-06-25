@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// Component
+import BusinessCardS from '../../components/BusinessCardS';
+
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -96,6 +99,9 @@ export default function Collection() {
                     </Grid>
                 </Grid>
             </form>
+            <Grid>
+                <BusinessCardS />
+            </Grid>
         </div>
         </Container>
     )

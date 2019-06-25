@@ -1,39 +1,69 @@
 import React, { useState } from "react";
 
-// React Components
-import { Col, Row, Container } from "../../components/Grid";
+// Components
 import Button from "../../components/Button";
 
-const Home = () => {
+// Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+// import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+    paper: {
+        marginTop: theme.spacing(6),
+        marginBottom: theme.spacing(3),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    signup: {
+        margin: theme.spacing(3),
+        width: 300,
+    },
+    card: {
+        margin: theme.spacing(3),
+        display: 'flex',
+    },
+    gif: {
+        width: 400,
+    },
+}));
+
+export default function Home() {
+    const classes = useStyles();
+
     return (
-        <div>
-            <Container>
-                <Row>
-                    <Col size="md-3"></Col>
-                    <Col size="md-6">
-                        <h3>Imprint is a dynamic business card collector for storing and organizing contact information.</h3>
-                    </Col>
-
-                </Row>
-                <Row>
-                    {/* gifs or video here */}
-                </Row>
-                <Row>
-                    <Col size="md-3"></Col>
-                    <Col size="md-6">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col size="md-3"></Col>
-                    <Col size="md-6">
-                        <Button href="/signup">SIGN UP</Button>
-                    </Col>
-                </Row>
-            </Container>
-        </div>
-    );
+        <Container component="main" maxWidth="sm">
+            <div className={classes.paper}>
+                <Typography component="h3" variant="h5" gutterBottom>
+                    <Box lineHeight={1.5} align="center">
+                    Imprint is a dynamic business card collector for storing and organizing contact information.
+                    </Box>
+                </Typography>
+                <Card className={classes.card}>
+                    <CardMedia 
+                    component="video"
+                    className={classes.gif}
+                    src="https://media.giphy.com/media/ar16pMPuR1BO8/giphy.mp4"
+                    />
+                </Card>
+                <Typography component="h5" variant="body1">
+                    <Box align="center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                    </Box>
+                </Typography>
+                <Button 
+                className={classes.signup}
+                variant="contained"
+                color="secondary"
+                href="/signup">
+                    SIGN UP
+                </Button>
+            </div>
+        </Container>
+    )
 };
-
-
-export default Home;
