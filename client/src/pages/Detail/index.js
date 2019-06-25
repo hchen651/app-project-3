@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // React Components
 import { Col, Row, Container } from "../../components/Grid";
-import BusinessCard from "../../components/BusinessCard";
+import BusinessCardL from "../../components/BusinessCardL";
 
 const Detail = () => {
 
@@ -16,7 +16,7 @@ const Detail = () => {
                 </Row>
                 <Row>
                     <Col size="md-6">
-                        <BusinessCard />
+                        <BusinessCardL />
                     </Col>
                     <Col size="md-6">
                         {/* QR code image here */}
