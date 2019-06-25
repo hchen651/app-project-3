@@ -14,13 +14,10 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    right: 0,
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     backgroundColor: '#E5E5E5',
-    textAlign: 'center'
+    marginTop: 'auto',
+    textAlign: 'center',
   },
 }));
 

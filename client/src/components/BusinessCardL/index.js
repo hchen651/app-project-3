@@ -15,9 +15,6 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
     },
-    dense: {
-        marginTop: 19,
-    },
 }));
 
 const accounts = [
@@ -26,7 +23,7 @@ const accounts = [
     { value: 'small business', label: 'Small Business'},
 ];
 
-const states = [
+const addressStates = [
     { value: 'AL', label: 'AL' }, { value: 'AK', label: 'AK' }, { value: 'AZ', label: 'AZ' },
     { value: 'AR', label: 'AR' }, { value: 'CA', label: 'CA' }, { value: 'CO', label: 'CO' },
     { value: 'CT', label: 'CT' }, { value: 'DE', label: 'DE' }, { value: 'FL', label: 'FL' },
@@ -34,15 +31,16 @@ const states = [
     { value: 'IL', label: 'IL' }, { value: 'IN', label: 'IN' }, { value: 'IA', label: 'IA' },
     { value: 'KS', label: 'KS' }, { value: 'KY', label: 'KY' }, { value: 'LA', label: 'LA' },
     { value: 'ME', label: 'ME' }, { value: 'MD', label: 'MD' }, { value: 'MA', label: 'MA' },
-    { value: 'MI', label: 'NI' }, { value: 'MN', label: 'MN' }, { value: 'MS', label: 'MS' },
+    { value: 'MI', label: 'MI' }, { value: 'MN', label: 'MN' }, { value: 'MS', label: 'MS' },
     { value: 'MO', label: 'MO' }, { value: 'MT', label: 'MT' }, { value: 'NE', label: 'NE' },
     { value: 'NV', label: 'NV' }, { value: 'NH', label: 'NH' }, { value: 'NJ', label: 'NJ' },
-    { value: 'NM', label: 'NM' }, { value: 'NC', label: 'NC' }, { value: 'ND', label: 'ND' },
-    { value: 'OH', label: 'OH' }, { value: 'OK', label: 'OK' }, { value: 'OR', label: 'OR' },
-    { value: 'PA', label: 'PA' }, { value: 'RI', label: 'RI' }, { value: 'SC', label: 'SC' },
-    { value: 'SD', label: 'SD' }, { value: 'TX', label: 'TX' }, { value: 'UT', label: 'UT' },
-    { value: 'VT', label: 'VT' }, { value: 'VA', label: 'VA' }, { value: 'WA', label: 'WA' },
-    { value: 'WV', label: 'WV' }, { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
+    { value: 'NM', label: 'NM' }, { value: 'NY', label: 'NY' }, { value: 'NC', label: 'NC' }, 
+    { value: 'ND', label: 'ND' }, { value: 'OH', label: 'OH' }, { value: 'OK', label: 'OK' }, 
+    { value: 'OR', label: 'OR' }, { value: 'PA', label: 'PA' }, { value: 'RI', label: 'RI' }, 
+    { value: 'SC', label: 'SC' }, { value: 'SD', label: 'SD' }, { value: 'TN', label: 'TN' }, 
+    { value: 'TX', label: 'TX' }, { value: 'UT', label: 'UT' }, { value: 'VT', label: 'VT' }, 
+    { value: 'VA', label: 'VA' }, { value: 'WA', label: 'WA' }, { value: 'WV', label: 'WV' }, 
+    { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
 ];
 
 export default function BusinessCardL() {
@@ -72,7 +70,6 @@ export default function BusinessCardL() {
                 select
                 id="account"
                 style={{ margin: 2, marginBottom: 10}}
-                label="Select"
                 fullWidth
                 className={classes.textField}
                 value={values.account}
@@ -97,7 +94,7 @@ export default function BusinessCardL() {
                 required
                 id="first-name"
                 style={{ margin: 2, width: "48.5%" }}
-                label="First Name"
+                placeholder="First Name*"
                 className={classes.textField}
                 value={values.firstName}
                 onChange={handleChange('first-name')}
@@ -109,7 +106,7 @@ export default function BusinessCardL() {
                 required
                 id="last-name"
                 style={{ margin: 2, width: "50%" }}
-                label="Last Name"
+                placeholder="Last Name*"
                 className={classes.textField}
                 value={values.lastName}
                 onChange={handleChange('last-name')}
@@ -220,8 +217,8 @@ export default function BusinessCardL() {
                 margin="normal"
                 InputLabelProps={{ shrink: true }}
                 InputProps={{ readOnly: true }}
-            >
-                {states.map(option => (
+                >
+                {addressStates.map(option => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>

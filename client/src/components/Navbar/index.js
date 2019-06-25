@@ -1,3 +1,6 @@
+// Navbar is not fixed to top. Need to read code below:
+// https://material-ui.com/components/app-bar/#elevate-app-bar
+
 import React from 'react';
 
 // Material UI
@@ -86,7 +89,7 @@ export default function ButtonAppBar() {
         <ListItemLink href="/profile">
           <ListItemText primary="My Profile" />
         </ListItemLink>        
-        <ListItemLink href="/home">
+        <ListItemLink href="/">
           <ListItemText primary="logout" />
         </ListItemLink>
       </List>

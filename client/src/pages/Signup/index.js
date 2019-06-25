@@ -39,7 +39,7 @@ export default function SignUp() {
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" gutterBottom>
           Sign Up
         </Typography>
         <form className={classes.form} 
