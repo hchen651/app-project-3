@@ -11,6 +11,8 @@ import NewCard from "./pages/NewCard";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+
+//temporary auth components - will be removed later
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
