@@ -15,6 +15,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -98,17 +100,23 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar color="default" position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('top', true)}>
-            <MenuIcon />
-          </IconButton>
+          <Grid item xs>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('top', true)}>
+              <MenuIcon />
+            </IconButton>
+          </Grid>          
+          <Grid item xs={6}>
+            <Typography variant="h6" align="center" className={classes.title}>
+              Imprint
+            </Typography>
+          </Grid>
+          <Grid item xs>
+          </Grid>
           <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
             {fullList('top')}
           </Drawer>
-          <Typography variant="h6" align="center" className={classes.title}>
-            Imprint
-          </Typography>
         </Toolbar>
       </AppBar>
     </div>
