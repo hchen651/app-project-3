@@ -12,33 +12,38 @@ import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
-
-// React Components
+// Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
 
-//CSS
-import "./App.css";
+// Material UI
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+
 
 function App() {
-  document.title = "Imprint";
   return (
-    <Router>
+    <div>
       <Navbar />
-      <div>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/collection" component={Collection} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/detail" component={Detail} />
-        <Route exact path="/newcard" component={NewCard} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/signup" component={Signup} />
-      </div>
+      <Container maxWidth="xl">
+        <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/collection" component={Collection} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/detail" component={Detail} />
+            <Route exact path="/newcard" component={NewCard} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/signup" component={Signup} />
+          </div>
+        </Router>
+      </Container>
       <Footer />
-    </Router>
+    </div>
   );
 }
 
