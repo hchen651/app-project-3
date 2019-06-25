@@ -103,7 +103,7 @@ export default function ButtonAppBar() {
           <Drawer anchor="top" open={state.top} onClose={toggleDrawer('top', false)}>
             {fullList('top')}
           </Drawer>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" align="center" className={classes.title}>
             Imprint
           </Typography>
         </Toolbar>

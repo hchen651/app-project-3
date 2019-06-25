@@ -12,16 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
-function GithubLink() {
-  return (
-    <Typography variant="body2">
-      <Link color="inherit" href="https://github.com/hchen651/app-project-3">
-      <FontAwesomeIcon icon={faGithub} />
-      </Link>
-    </Typography>
-  );
-};
-
 const useStyles = makeStyles(theme => ({
   footer: {
     position: 'absolute',
@@ -40,8 +30,12 @@ export default function StickyFooter() {
   return (
       <footer className={classes.footer}>
         <Container maxWidth="xl">
-          <Typography variant="body1">Imprint © 2019. All Rights Reserved</Typography>
-          <GithubLink />
+          <Typography variant="body2">
+            {'Imprint © 2019. All Rights Reserved '}
+            <Link color="inherit" href="https://github.com/hchen651/app-project-3">
+            <FontAwesomeIcon icon={faGithub} />
+            </Link>
+          </Typography>
         </Container>
       </footer>
   );
