@@ -27,24 +27,30 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-// Handle Submit
-const handleSubmit = e => {
-    e.preventDefault();
-    const userData = {
-        email: this.state.email,
-        password: this.state.password
-    };
-    console.log(userData);
-};
-
 export default function SignIn() {
     const classes = useStyles();
 
     // Declare State
     // https://reactjs.org/docs/forms.html
     // Hooks in a functional component: https://reactjs.org/docs/hooks-state.html
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    // const [email, setEmail] = useState();
+    // const [password, setPassword] = useState();
+
+    const [values, setValues] = useState({ email: '', password: '' })
+    
+    const handleInputChange = e => {
+        const { name, value } = e.target
+        setValues({ ...values, [name]: value })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        const userData = {
+            email: values.email,
+            password: values.password
+        };
+        console.log(userData);
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -61,6 +67,8 @@ export default function SignIn() {
                         margin="normal"
                         required
                         fullWidth
+                        value={values.email}
+                        onChange={handleInputChange}
                         id="email"
                         label="Email Address"
                         name="email"
@@ -72,6 +80,8 @@ export default function SignIn() {
                         margin="normal"
                         required
                         fullWidth
+                        value={values.password}
+                        onChange={handleInputChange}
                         name="password"
                         label="Password"
                         type="password"
