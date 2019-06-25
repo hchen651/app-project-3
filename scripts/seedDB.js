@@ -10,13 +10,12 @@ mongoose.connect(
 
 const userSeed = [
   {
-    username: "Admin",
     password: "testpass",
     firstName: "Admin",
     lastName: "Account",
     cardType: "Personal",
     companyName: "imprint Inc.",
-    email: "projectimprint@projectimprint.inc",
+    email: "project@imprint.inc",
     phone: "(718)123-4567",
     website: "project-imprint.herokuapp.com",
     street: "123 Fake St.",
@@ -25,13 +24,12 @@ const userSeed = [
     zipcode: 10003
   },
   {
-    username: "Henry",
     password: "testpass",
-    firstName: "Admin",
-    lastName: "Account",
+    firstName: "Henry",
+    lastName: "Chen",
     cardType: "Personal",
     companyName: "imprint Inc.",
-    email: "projectimprint@projectimprint.inc",
+    email: "henry@imprint.inc",
     phone: "(718)123-4567",
     website: "project-imprint.herokuapp.com",
     street: "123 Fake St.",
