@@ -27,27 +27,35 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-// Declare State
-// https://reactjs.org/docs/forms.html
-
 // Handle Submit
 const handleSubmit = e => {
     e.preventDefault();
+    const userData = {
+        email: this.state.email,
+        password: this.state.password
+    };
+    console.log(userData);
 };
 
 export default function SignIn() {
     const classes = useStyles();
 
+    // Declare State
+    // https://reactjs.org/docs/forms.html
+    // Hooks in a functional component: https://reactjs.org/docs/hooks-state.html
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
     return (
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5" gutterBottom>
-                Sign In
+                    Sign In
                 </Typography>
-                <form 
-                className={classes.form} 
-                onSubmit={handleSubmit} 
-                noValidate>
+                <form
+                    className={classes.form}
+                    onSubmit={handleSubmit}
+                    noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -83,12 +91,12 @@ export default function SignIn() {
                     >
                         Sign In
                     </Button>
-                    
+
                     <Grid container justify="center">
                         <Grid item>
-                        <Link href="/signup" variant="body2">
-                            {"Don't have an account? Sign Up"}
-                        </Link>
+                            <Link href="/signup" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
                         </Grid>
                     </Grid>
                 </form>
