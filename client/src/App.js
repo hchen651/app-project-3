@@ -11,6 +11,8 @@ import NewCard from "./pages/NewCard";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 
 // Components
 import Navbar from "./components/Navbar";
@@ -39,6 +41,11 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
+
+            {/* test routes for auth, will probably be removed later */}
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+
           </div>
         </Router>
       </Container>

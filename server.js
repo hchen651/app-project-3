@@ -27,7 +27,23 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_mf63n599:pp5dovtcjhr89fn4a7ueount1j@ds261486.mlab.com:61486/heroku_mf63n599");
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
+//Alternative MongoDB connection, Commented out for testing
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://heroku_mf63n599:pp5dovtcjhr89fn4a7ueount1j@ds261486.mlab.com:61486/heroku_mf63n599");
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("/api/users", users);
 
 // Start the API server
 app.listen(PORT, function() {
