@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     menu: {
         width: 300,
     },
+    cover: {
+        height: 50
+    }
 }));
 
 // filter options
@@ -42,8 +45,8 @@ const filters = [
         label: 'by date added',
     },
     {
-        value: 'by alphabetical order',
-        label: 'by alphabetical order',
+        value: 'by alphabetical',
+        label: 'by alphabetical',
     },
     {
         value: 'by category',
@@ -58,29 +61,51 @@ const filters = [
 // all cards data (need mongoDB)
 function createData( id, name, title ) {
     return { id, name, title };
-  }
+}
 
-const allCards = [
-    createData( "1", "Name1", "company1" ),
-    createData( "2", "Name2", "company2" ),
-    createData( "3", "Name3", "company3" ),
-    createData( "4", "Name4", "company4" ),
-    createData( "5", "Name5", "company5" ),
+let bizCards = [
+    createData( "1", "Peter", "company1" ),
+    createData( "2", "Rachel", "company2" ),
+    createData( "3", "Adam", "company3" ),
+    createData( "4", "Cathy", "company4" ),
+    createData( "5", "Bob", "company5" ),
 ];
 
 // display all cards
 export default function Collection() {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        filter: 'by date added',
-    });
+
+    const [values, setValues] = useState({filter: ""});
+    const [allCards, setBizCards] = useState(bizCards);
   
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
-  
+
+    useEffect(() => {
+        if (values.filter === "by alphabetical") {
+            let newCards = [];
+            newCards = allCards.sort((card, otherCard) => {
+                if(card.name < otherCard.name){
+                    return -1;
+                }
+            });
+            setBizCards(newCards);
+        }
+        if(values.filter === "by date added"){
+            let newCards = [];
+            newCards = allCards.sort((card, otherCard) => {
+                if(card.name > otherCard.name){
+                    return -1;
+                }
+            });
+            setBizCards(newCards);
+        }  
+    }, [values.filter, allCards]);
+
     return (
         <Container component="main" maxWidth="xl">
+            {values.filter}
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5" align="center" gutterBottom>
                 Collection
@@ -145,8 +170,6 @@ export default function Collection() {
                                     image=""
                                     title=""
                                 />
-                                {/* {card.name}
-                                {card.title} */}
                             </BusinessCardS>
                         </Grid>
                     ))}
