@@ -15,6 +15,7 @@ import axios from 'axios';
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(6),
+        marginBottom: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -54,6 +55,7 @@ export default function SignIn() {
             password: values.password
         };
         console.log(userData);
+        // to confirm user login information is correct
     };
 
     return (

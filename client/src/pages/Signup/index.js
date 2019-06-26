@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(10),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -30,8 +31,10 @@ export default function SignUp() {
   const classes = useStyles();
 
   const [values, setValues] = useState({ 
+    firstName: '',
+    lastName: '',
     email: '', 
-    password: '' 
+    password: '',
   })
 
   const handleInputChange = e => {
@@ -42,10 +45,13 @@ export default function SignUp() {
   const handleSubmit = e => {
     e.preventDefault();
     const userData = {
+        firstName: values.firstName,
+        lastName: values.lastName,
         email: values.email,
         password: values.password
     };
     console.log(userData);
+    // to confirm user info has not been registered yet
   };
 
   return (
@@ -54,18 +60,19 @@ export default function SignUp() {
         <Typography component="h1" variant="h5" gutterBottom>
           Sign Up
         </Typography>
-        <form className={classes.form} 
-        onSubmit={handleSubmit}
-        noValidate>
+        <form 
+          className={classes.form} 
+          onSubmit={handleSubmit}
+          noValidate>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
+                autoComplete="firstName"
                 name="firstName"
                 variant="outlined"
                 required
                 fullWidth
-                value={values.email}
+                value={values.firstName}
                 onChange={handleInputChange}
                 id="firstName"
                 label="First Name"
@@ -77,12 +84,12 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                value={values.email}
+                value={values.lastName}
                 onChange={handleInputChange}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
-                autoComplete="lname"
+                autoComplete="lastName"
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,13 +110,13 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                value={values.email}
+                value={values.password}
                 onChange={handleInputChange}
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="password"
               />
             </Grid>
           </Grid>

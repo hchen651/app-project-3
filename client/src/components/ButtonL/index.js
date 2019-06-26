@@ -1,5 +1,6 @@
-// material-ui
 import React from 'react';
+
+// Material UI
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,7 +18,7 @@ const styles = {
   },
 };
 
-function ClassNames(props) {
+function ButtonL(props) {
   const { classes, children, className, ...other } = props;
 
   return (
@@ -27,10 +28,10 @@ function ClassNames(props) {
   );
 }
 
-ClassNames.propTypes = {
+ButtonL.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
 
-export default withStyles(styles)(ClassNames);
+export default withStyles(styles)(ButtonL);
