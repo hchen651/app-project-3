@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// Component
+import BusinessCardS from '../../components/BusinessCardS';
+
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';

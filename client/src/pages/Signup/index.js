@@ -25,16 +25,28 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// Declare State
-// https://reactjs.org/docs/forms.html
-
-// Handle Submit
-const handleSubmit = e => {
-  e.preventDefault();
-};
 
 export default function SignUp() {
   const classes = useStyles();
+
+  const [values, setValues] = useState({ 
+    email: '', 
+    password: '' 
+  })
+
+  const handleInputChange = e => {
+    const { name, value } = e.target
+    setValues({ ...values, [name]: value })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const userData = {
+        email: values.email,
+        password: values.password
+    };
+    console.log(userData);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -53,6 +65,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.email}
+                onChange={handleInputChange}
                 id="firstName"
                 label="First Name"
                 autoFocus
@@ -63,6 +77,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.email}
+                onChange={handleInputChange}
                 id="lastName"
                 label="Last Name"
                 name="lastName"
@@ -74,6 +90,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.email}
+                onChange={handleInputChange}
                 id="email"
                 label="Email Address"
                 name="email"
@@ -85,6 +103,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.email}
+                onChange={handleInputChange}
                 name="password"
                 label="Password"
                 type="password"
