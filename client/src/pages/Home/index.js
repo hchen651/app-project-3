@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Components
-import Button from "../../components/Button";
+import ButtonL from "../../components/ButtonL";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,12 +15,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(6),
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(10),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
-    signup: {
+    btn: {
         margin: theme.spacing(3),
         width: 300,
     },
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(3),
         display: 'flex',
     },
-    gif: {
+    img: {
         width: 400,
     },
 }));
@@ -47,7 +47,7 @@ export default function Home() {
                 <Card className={classes.card}>
                     <CardMedia 
                     component="video"
-                    className={classes.gif}
+                    className={classes.img}
                     src="https://media.giphy.com/media/ar16pMPuR1BO8/giphy.mp4"
                     />
                 </Card>
@@ -56,13 +56,13 @@ export default function Home() {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
                     </Box>
                 </Typography>
-                <Button 
-                className={classes.signup}
+                <ButtonL
+                className={classes.btn}
                 variant="contained"
                 color="secondary"
                 href="/signup">
                     SIGN UP
-                </Button>
+                </ButtonL>
             </div>
         </Container>
     )

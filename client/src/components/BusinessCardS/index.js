@@ -12,7 +12,7 @@ const styles = {
         borderRadius: 0,
         border: 0,
         color: 'white',
-        padding: '0 30px',
+        padding: '0 10px',
         boxShadow: 0,
     },
 };

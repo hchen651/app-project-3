@@ -1,5 +1,8 @@
 import React from 'react';
 
+// see link:
+// https://material-ui.com/components/icons/#font-awesome
+
 // Material UI
 // import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';

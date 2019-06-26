@@ -104,77 +104,76 @@ export default function Collection() {
     }, [values.filter, allCards]);
 
     return (
-        <Container component="main" maxWidth="xl">
-            {values.filter}
-            <div className={classes.paper}>
-                <Typography component="h1" variant="h5" align="center" gutterBottom>
-                Collection
-                </Typography>
-                <form 
+        <Container className={classes.paper} component="main" maxWidth="xl">
+            {/* {values.filter} */}
+            <Typography component="h1" variant="h5" align="center" gutterBottom>
+            Collection
+            </Typography>
+            <Grid 
+                container 
                 className={classes.form} 
-                noValidate>
-                    <Grid container spacing={2} direction="row" justify="center">
-                        <Grid item xs={9}>
-                            <TextField
-                                id="outlined-search"
-                                label="Search"
-                                type="search"
-                                className={classes.textField}
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs>
-                            <TextField
-                                id="outlined-select-filter"
-                                select
-                                // label="Select"
-                                className={classes.textField}
-                                value={values.filter}
-                                onChange={handleChange('filter')}
-                                SelectProps={{
-                                MenuProps: {
-                                    className: classes.menu,
-                                },
-                                }}
-                                margin="normal"
-                                variant="outlined"
-                                fullWidth
-                            >
-                                {filters.map(option => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                    </Grid>
-                </form>
-                <Grid container spacing={2}>
-                    {allCards.map(card => (
-                        <Grid item key={card.id} xs={6} md={3}>
-                            <BusinessCardS>
-                                <div className={classes.details}>
-                                    <CardContent className={classes.content}>
-                                        <Typography component="h5" variant="h5">
-                                            {card.name}
-                                        </Typography>
-                                        <Typography variant="subtitle1" color="textSecondary">
-                                            {card.title}
-                                        </Typography>
-                                    </CardContent>
-                                </div>
-                                <CardMedia
-                                    className={classes.cover}
-                                    image=""
-                                    title=""
-                                />
-                            </BusinessCardS>
-                        </Grid>
-                    ))}
+                spacing={2} 
+                direction="row" 
+                justify="center">
+                <Grid item xs={9}>
+                    <TextField
+                        id="outlined-search"
+                        label="Search"
+                        type="search"
+                        className={classes.textField}
+                        margin="normal"
+                        variant="outlined"
+                        fullWidth
+                    />
                 </Grid>
-            </div>
+                <Grid item xs>
+                    <TextField
+                        id="outlined-select-filter"
+                        select
+                        // label="Select"
+                        className={classes.textField}
+                        value={values.filter}
+                        onChange={handleChange('filter')}
+                        SelectProps={{
+                        MenuProps: {
+                            className: classes.menu,
+                        },
+                        }}
+                        margin="normal"
+                        variant="outlined"
+                        fullWidth
+                    >
+                        {filters.map(option => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+                {allCards.map(card => (
+                    <Grid item key={card.id} xs={6} md={3}>
+                        <BusinessCardS>
+                            <div className={classes.details}>
+                                <CardContent className={classes.content}>
+                                    <Typography component="h5" variant="h5">
+                                        {card.name}
+                                    </Typography>
+                                    <Typography variant="subtitle1" color="textSecondary">
+                                        {card.title}
+                                    </Typography>
+                                </CardContent>
+                            </div>
+                            <CardMedia
+                                className={classes.cover}
+                                image=""
+                                title=""
+                            />
+                        </BusinessCardS>
+                    </Grid>
+                ))}
+            </Grid>
         </Container>
     )
 }
