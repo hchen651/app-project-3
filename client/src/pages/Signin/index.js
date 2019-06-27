@@ -35,8 +35,8 @@ export default function SignIn() {
     // Declare State
     // https://reactjs.org/docs/forms.html
     // Hooks in a functional component: https://reactjs.org/docs/hooks-state.html
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    //const [email, setEmail] = useState('');
+    //const [password, setPassword] = useState('');
 
     const [values, setValues] = useState({ 
         email: '', 

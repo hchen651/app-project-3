@@ -76,6 +76,7 @@ export default function Detail() {
         addressCity: '',
         addressState: 'NY',
         addressZipcode: '',
+        editState: false
     });
 
     const handleInputChange = name => event => {
@@ -110,7 +111,7 @@ export default function Detail() {
                                     }}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                     >
                                     {accounts.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
@@ -130,7 +131,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -144,7 +145,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -157,7 +158,7 @@ export default function Detail() {
                                     onChange={handleInputChange('company')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                                 <TextField
                                     id="title-position"
@@ -168,7 +169,7 @@ export default function Detail() {
                                     onChange={handleInputChange('title-position')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
 
@@ -183,7 +184,7 @@ export default function Detail() {
                                     onChange={handleInputChange('email')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                                 <TextField
                                     id="phone"
@@ -194,7 +195,7 @@ export default function Detail() {
                                     onChange={handleInputChange('phone')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                                 <TextField
                                     id="website"
@@ -205,7 +206,7 @@ export default function Detail() {
                                     onChange={handleInputChange('website')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
 
@@ -219,7 +220,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-street')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -232,7 +233,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-city')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={3}>
@@ -251,7 +252,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                     >
                                     {addressStates.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
@@ -269,7 +270,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-zipcode')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -281,7 +282,7 @@ export default function Detail() {
                                     rows="4"
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: false }}
+                                    InputProps={{ readOnly: values.editState }}
                                 />
                             </Grid>
                         </Grid>

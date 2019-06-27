@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import Edit from '@material-ui/icons/Edit';
 
 // custom styles
 const useStyles = makeStyles(theme => ({
@@ -30,9 +32,9 @@ const useStyles = makeStyles(theme => ({
 
 // dropdown list - account
 const accounts = [
-    { value: 'personal', label: 'Personal'},
-    { value: 'company', label: 'Company'},
-    { value: 'small business', label: 'Small Business'},
+    { value: 'personal', label: 'Personal' },
+    { value: 'company', label: 'Company' },
+    { value: 'small business', label: 'Small Business' },
 ];
 
 // dropdown list - address state abbrev.
@@ -47,12 +49,12 @@ const addressStates = [
     { value: 'MI', label: 'MI' }, { value: 'MN', label: 'MN' }, { value: 'MS', label: 'MS' },
     { value: 'MO', label: 'MO' }, { value: 'MT', label: 'MT' }, { value: 'NE', label: 'NE' },
     { value: 'NV', label: 'NV' }, { value: 'NH', label: 'NH' }, { value: 'NJ', label: 'NJ' },
-    { value: 'NM', label: 'NM' }, { value: 'NY', label: 'NY' }, { value: 'NC', label: 'NC' }, 
-    { value: 'ND', label: 'ND' }, { value: 'OH', label: 'OH' }, { value: 'OK', label: 'OK' }, 
-    { value: 'OR', label: 'OR' }, { value: 'PA', label: 'PA' }, { value: 'RI', label: 'RI' }, 
-    { value: 'SC', label: 'SC' }, { value: 'SD', label: 'SD' }, { value: 'TN', label: 'TN' }, 
-    { value: 'TX', label: 'TX' }, { value: 'UT', label: 'UT' }, { value: 'VT', label: 'VT' }, 
-    { value: 'VA', label: 'VA' }, { value: 'WA', label: 'WA' }, { value: 'WV', label: 'WV' }, 
+    { value: 'NM', label: 'NM' }, { value: 'NY', label: 'NY' }, { value: 'NC', label: 'NC' },
+    { value: 'ND', label: 'ND' }, { value: 'OH', label: 'OH' }, { value: 'OK', label: 'OK' },
+    { value: 'OR', label: 'OR' }, { value: 'PA', label: 'PA' }, { value: 'RI', label: 'RI' },
+    { value: 'SC', label: 'SC' }, { value: 'SD', label: 'SD' }, { value: 'TN', label: 'TN' },
+    { value: 'TX', label: 'TX' }, { value: 'UT', label: 'UT' }, { value: 'VT', label: 'VT' },
+    { value: 'VA', label: 'VA' }, { value: 'WA', label: 'WA' }, { value: 'WV', label: 'WV' },
     { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
 ];
 
@@ -78,6 +80,17 @@ export default function Detail() {
         addressZipcode: '',
     });
 
+    const [editState, setEditState] = useState(true);
+
+    const toggleEdit = () => {
+        if (editState == true){
+            setEditState(false);
+        }
+        else{
+            setEditState(true);
+        }
+    };
+
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
@@ -85,13 +98,13 @@ export default function Detail() {
     return (
         <Container className={classes.paper} component="main" maxWidth="xl">
             <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Card Detail for [Name]
+                Card Detail for [Name]
             </Typography>
             <Grid container>
                 <Grid item xs={12} sm={6}>
                     {/* <BusinessCardL> */}
-                    <form 
-                        className={classes.form} 
+                    <form
+                        className={classes.form}
                         // onSubmit={handleSubmit}
                         noValidate>
                         <Grid container spacing={2}>
@@ -110,11 +123,11 @@ export default function Detail() {
                                     }}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
-                                    >
+                                    InputProps={{ readOnly: editState }}
+                                >
                                     {accounts.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
+                                            {option.label}
                                         </MenuItem>
                                     ))}
                                 </TextField>
@@ -130,7 +143,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -144,7 +157,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -157,7 +170,7 @@ export default function Detail() {
                                     onChange={handleInputChange('company')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                                 <TextField
                                     id="title-position"
@@ -168,7 +181,7 @@ export default function Detail() {
                                     onChange={handleInputChange('title-position')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
 
@@ -183,7 +196,7 @@ export default function Detail() {
                                     onChange={handleInputChange('email')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                                 <TextField
                                     id="phone"
@@ -194,7 +207,7 @@ export default function Detail() {
                                     onChange={handleInputChange('phone')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                                 <TextField
                                     id="website"
@@ -205,7 +218,7 @@ export default function Detail() {
                                     onChange={handleInputChange('website')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
 
@@ -219,7 +232,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-street')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -232,7 +245,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-city')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={3}>
@@ -251,11 +264,11 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
-                                    >
+                                    InputProps={{ readOnly: editState }}
+                                >
                                     {addressStates.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
+                                            {option.label}
                                         </MenuItem>
                                     ))}
                                 </TextField>
@@ -269,7 +282,7 @@ export default function Detail() {
                                     onChange={handleInputChange('address-zipcode')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -281,12 +294,17 @@ export default function Detail() {
                                     rows="4"
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: editState }}
                                 />
                             </Grid>
                         </Grid>
-                    {/* </ BusinessCardL> */}
+                        {/* </ BusinessCardL> */}
                     </form>
+
+                    <IconButton className={classes.button} aria-label="Edit">
+                        <Edit className={classes.iconHover} color="error" onClick={() => setEditState(false)} />
+                    </IconButton>
+
                     <ButtonS />
                 </Grid>
 
