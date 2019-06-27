@@ -2,6 +2,9 @@
 // https://material-ui.com/components/app-bar/#elevate-app-bar
 
 import React from 'react';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -40,7 +43,45 @@ function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
 
-export default function ButtonAppBar() {
+function renderPage() {
+  if (this.props.auth.isAuthenticated) {
+    return (
+      <List>
+        <ListItemLink href="/collection">
+          <ListItemText primary="Collection" />
+        </ListItemLink>
+        <ListItemLink href="/profile">
+          <ListItemText primary="My Profile" />
+        </ListItemLink>
+        <ListItemLink href="/about">
+          <ListItemText primary="About" />
+        </ListItemLink>
+        <ListItemLink href="/contact">
+          <ListItemText primary="Contact Us" />
+        </ListItemLink>
+        <ListItemLink href="/">
+          <ListItemText primary="logout" />
+        </ListItemLink>
+      </List>
+    );
+  } else {
+    return (
+      <List>
+        <ListItemLink href="/about">
+          <ListItemText primary="About" />
+        </ListItemLink>
+        <ListItemLink href="/signin">
+          <ListItemText primary="Sign In" />
+        </ListItemLink>
+        <ListItemLink href="/contact">
+          <ListItemText primary="Contact Us" />
+        </ListItemLink>
+      </List>
+    );
+  }
+};
+
+function Navbar(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -69,32 +110,33 @@ export default function ButtonAppBar() {
           <ListItemText primary="Imprint" />
         </ListItemLink>
       </List>
-      {/* before login Navbar. need authentication */}
       <Divider />
-      <List>
+      {renderPage()}
+      {/* before login Navbar. need authentication */}
+      {/* <List>
         <ListItemLink href="/about">
           <ListItemText primary="About" />
         </ListItemLink>
         <ListItemLink href="/signin">
           <ListItemText primary="Sign In" />
-        </ListItemLink>        
+        </ListItemLink>
         <ListItemLink href="/contact">
           <ListItemText primary="Contact Us" />
         </ListItemLink>
-      </List>
+      </List> */}
       {/* after login Navbar */}
-      <Divider />
+      {/* <Divider />
       <List>
         <ListItemLink href="/collection">
           <ListItemText primary="Collection" />
         </ListItemLink>
         <ListItemLink href="/profile">
           <ListItemText primary="My Profile" />
-        </ListItemLink>        
+        </ListItemLink>
         <ListItemLink href="/">
           <ListItemText primary="logout" />
         </ListItemLink>
-      </List>
+      </List> */}
     </div>
   );
 
@@ -106,7 +148,7 @@ export default function ButtonAppBar() {
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('top', true)}>
               <MenuIcon />
             </IconButton>
-          </Grid>          
+          </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" align="center" className={classes.title}>
               Imprint
@@ -122,3 +164,16 @@ export default function ButtonAppBar() {
     </div>
   );
 }
+
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = function(state) {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Navbar);
