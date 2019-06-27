@@ -37,26 +37,6 @@ export default function Home() {
     const classes = useStyles();
 
     return (
-<<<<<<< HEAD
-        <div>
-            <Container>
-                <Row>
-                    <Col size="md-12">
-                        <h2>Home</h2>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col size="md-12">
-                        {/* context here */}
-                    </Col>
-                </Row>
-            </Container>
-        </div>
-    );    
-};
-
-export default Home;
-=======
         <Container component="main" maxWidth="sm">
             <div className={classes.paper}>
                 <Typography component="h3" variant="h5" gutterBottom>
@@ -87,4 +67,3 @@ export default Home;
         </Container>
     )
 };
->>>>>>> parent of e0d231c... Merge branch 'master' into maru4

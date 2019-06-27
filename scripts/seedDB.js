@@ -118,7 +118,6 @@ db.User
     console.error(err);
     process.exit(1);
   });
-<<<<<<< HEAD
 
 db.Card
   .remove({})
@@ -132,5 +131,3 @@ db.Card
     process.exit(1);
   });
 
-=======
->>>>>>> parent of e0d231c... Merge branch 'master' into maru4

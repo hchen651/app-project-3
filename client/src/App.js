@@ -66,10 +66,11 @@ function App() {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
+            
             {/* Authorized use gets redirected to: */}
-            <Switch>
+            {/* <Switch>
               <PrivateRoute exact path="/collection" component={Collection} />
-            </Switch>
+            </Switch> */}
 
             {/* Test routes for auth, will probably be removed later, just ignore */}
             <Route exact path="/register" component={Register} />
