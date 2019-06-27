@@ -1,40 +1,10 @@
 import React, { useState } from "react";
 
-// Components
-import ButtonL from "../../components/ButtonL";
+// React Components
+import { Col, Row, Container } from "../../components/Grid";
 
-// Material UI
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-// import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(theme => ({
-    paper: {
-        marginTop: theme.spacing(6),
-        marginBottom: theme.spacing(10),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    btn: {
-        margin: theme.spacing(3),
-        width: 300,
-    },
-    card: {
-        margin: theme.spacing(3),
-        display: 'flex',
-    },
-    img: {
-        width: 400,
-    },
-}));
-
-export default function Home() {
-    const classes = useStyles();
+const Home = () => {
 
     return (
         <Container component="main" maxWidth="sm">
@@ -67,3 +37,22 @@ export default function Home() {
         </Container>
     )
 };
+
+        <div>
+            <Container>
+                <Row>
+                    <Col size="md-12">
+                        <h2>Home</h2>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col size="md-12">
+                        {/* context here */}
+                    </Col>
+                </Row>
+            </Container>
+        </div>
+    );    
+};
+
+export default Home;

@@ -50,3 +50,73 @@ db.User
     console.error(err);
     process.exit(1);
   });
+
+  const UserInfo =  [
+    {
+      firstName: "Patrick",
+      lastName: "Bateman",
+      cardType: "Business",
+      companyName: "Pierce & Pierce",
+      email: "silianrail@pierce.inc",
+      phone: "(212)555-6342",
+      website: "pierceandpierce.com",
+      street: "358 Exchange Place",
+      city: "New York",
+      state: "NY",
+      zipcode: 10099
+    },
+    {
+      firstName: "David",
+      lastName: "Patten",
+      cardType: "Business",
+      companyName: "Pierce & Pierce",
+      email: "eggshell@pierce.inc",
+      phone: "(212)555-6342",
+      website: "pierceandpierce.com",
+      street: "358 Exchange Place",
+      city: "New York",
+      state: "NY",
+      zipcode: 10099
+    },
+    {
+      firstName: "Timothy",
+      lastName: "Bryce",
+      cardType: "Business",
+      companyName: "Pierce & Pierce",
+      email: "palenimbuswhite@pierce.inc",
+      phone: "(212)555-6342",
+      website: "pierceandpierce.com",
+      street: "358 Exchange Place",
+      city: "New York",
+      state: "NY",
+      zipcode: 10099
+    },
+    {
+      firstName: "Paul",
+      lastName: "Allen",
+      cardType: "Business",
+      companyName: "Pierce & Pierce",
+      email: "watermark@pierce.inc",
+      phone: "(212)555-6342",
+      website: "pierceandpierce.com",
+      street: "358 Exchange Place",
+      city: "New York",
+      state: "NY",
+      zipcode: 10099
+    }
+    {
+      firstName: "John",
+      lastName: "Wick",
+      cardType: "Personal",
+      companyName: ,
+      email: "doglover101@babayaga.net",
+      phone: "(123)456-7890",
+      website: ,
+      street: "2 South William Street",
+      city: "New York",
+      state: "NY",
+      zipcode: 10004
+    }
+  ];
+
+  

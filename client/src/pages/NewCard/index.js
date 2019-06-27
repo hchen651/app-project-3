@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // React Components
 import { Col, Row, Container } from "../../components/Grid";
-import BusinessCardL from "../../components/BusinessCardL";
+
 
 const NewCard = () => {
 
@@ -15,11 +15,8 @@ const NewCard = () => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col size="md-6">
-                        <BusinessCardL />
-                    </Col>
-                    <Col size="md-6">
-                        {/* QR code image here */}
+                    <Col size="md-12">
+                        {/* context here */}
                     </Col>
                 </Row>
             </Container>
