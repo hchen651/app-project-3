@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 // React Components
-// import BusinessCardL from "../../components/BusinessCardL";
 import ButtonS from "../../components/ButtonS";
 
 // Material UI
