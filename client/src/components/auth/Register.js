@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
+import {Form, FormControl, FormGroup, ControlLabel, Row, Col, Container, Button} from 'react-bootstrap';
 
 class Register extends Component {
   constructor() {
@@ -40,6 +41,64 @@ class Register extends Component {
   };
   render() {
     const { errors } = this.state;
+return (
+  <Container>
+  <Row> 
+  <Col>
+  <Link to="/" className="btn-flat waves-effect">
+              <i className="material-icons left"></i> Back to
+              home
+            </Link>
+  </Col>
+  <Col xs={6}>
+    
+    <div className="col s12" style={{ paddingTop: "20px" }}>
+    <h4>
+    <b>Register</b> below
+    </h4>
+    <p className="grey-text text-darken-1">
+     Already have an account? <Link to="/login">Log in</Link>
+    </p>
+    </div> 
+
+   <Form>
+  <Form.Group controlId="formFirstName">
+    <Form.Label>First Name</Form.Label>
+    <Form.Control type="" placeholder="Enter your first name" />
+  </Form.Group>
+  <Form.Group controlId="formLastName">
+    <Form.Label>Last Name</Form.Label>
+    <Form.Control type="" placeholder="Enter your last name" />
+  </Form.Group>
+  <Form.Group controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" placeholder="Enter your email" />
+  </Form.Group>
+  <Form.Group controlId="formBasicPassword1">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" placeholder="Enter Password" />
+  </Form.Group>
+  <Form.Group controlId="formBasicPassword2">
+    <Form.Label>Confirm Password</Form.Label>
+    <Form.Control type="password" placeholder="Confirm Password" />
+    <Form.Text className="text-muted">
+      Passwords have to match 
+    </Form.Text>
+  </Form.Group>
+  <Button variant="dark" type="submit">
+    Submit
+  </Button>
+
+</Form>
+
+</Col>
+<Col></Col>
+
+</Row>
+</Container>
+          
+          
+=======
     return (
       <div className="container">
         <div className="row">
