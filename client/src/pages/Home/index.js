@@ -41,7 +41,7 @@ export default function Home() {
             <div className={classes.paper}>
                 <Typography component="h3" variant="h5" gutterBottom>
                     <Box lineHeight={1.5} align="center">
-                    Imprint is a dynamic business card collector for storing and organizing contact information.
+                    Imprint is a revolutionary app that can scan, import, and organize business cards into your phone with a simple snap and tap. In moments, the card is saved with the subject's company and contact information neatly organized to be easily referenced at any time
                     </Box>
                 </Typography>
                 <Card className={classes.card}>
@@ -53,7 +53,7 @@ export default function Home() {
                 </Card>
                 <Typography component="h5" variant="body1">
                     <Box align="center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                    Picture this, you sit down at the bar and next to you, sits a man in a clean cut suit and you start chatting about business. One thing leads to another and Mr. P. Bateman slides you his card embossed with beautiful Silian Grail lettering. You wake up the next morning, fully intent on calling up Mr. Bateman and you open your wallet only to find it overflowing with other business cards that may have once been important but now seem trivial to the multi-million dollar deal Bateman was posing to you. You scramble, dig, and ultimately sit down, defeated, having accepted you lost the business card of a potentially lucrative client. The frustration hits you like an ax to the face. How could've this been avoided? We are proud to introduce you to Imprint
                     </Box>
                 </Typography>
                 <ButtonL
