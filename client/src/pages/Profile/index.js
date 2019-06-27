@@ -89,7 +89,6 @@ export default function Detail() {
             </Typography>
             <Grid container>
                 <Grid item xs={12} sm={6}>
-                    {/* <BusinessCardL> */}
                     <form 
                         className={classes.form} 
                         // onSubmit={handleSubmit}
@@ -285,9 +284,7 @@ export default function Detail() {
                                 />
                             </Grid>
                         </Grid>
-                    {/* </ BusinessCardL> */}
                     </form>
-                    <ButtonS />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>

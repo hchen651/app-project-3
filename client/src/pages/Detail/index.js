@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-// React Components
-import ButtonS from "../../components/ButtonS";
-
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,24 +7,52 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
+
+import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 // custom styles
 const useStyles = makeStyles(theme => ({
-    paper: {
+    root: {
         marginTop: theme.spacing(6),
         marginBottom: theme.spacing(6),
     },
+    paper: {
+        borderRadius: 0,
+        border: 0,
+        padding: '20px',
+        boxShadow: 0, 
+    },
+    header: {
+        marginBottom: theme.spacing(6),
+    },
     textField: {
+        margin: theme.spacing(1),
         // marginTop: theme.spacing(1),
         // marginBottom: theme.spacing(1),
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        marginTop: theme.spacing(4),
-    }
+        // marginTop: theme.spacing(4),
+    },
+    button: {
+        margin: theme.spacing(2),
+    },
+    input: {
+        display: 'none',
+    },
+    iconHover: {
+        '&:hover': {
+        color: red[700],
+        },
+        fontSize: 30,
+    },
+
 }));
 
 // dropdown list - account
@@ -78,6 +103,7 @@ export default function Detail() {
         addressCity: '',
         addressState: 'NY',
         addressZipcode: '',
+        notes: '',
     });
 
     const [editState, setEditState] = useState(true);
@@ -86,7 +112,7 @@ export default function Detail() {
         if (editState == true){
             setEditState(false);
         }
-        else{
+        else {
             setEditState(true);
         }
     };
@@ -96,222 +122,238 @@ export default function Detail() {
     };
 
     return (
-        <Container className={classes.paper} component="main" maxWidth="xl">
-            <Typography component="h1" variant="h5" align="center" gutterBottom>
-                Card Detail for [Name]
+        <Container className={classes.root} component="main" maxWidth="xl">
+            <Typography className={classes.header} component="h1" variant="h5" align="center" gutterBottom>
+                Card Detail for: {values.firstName} {values.lastName}
             </Typography>
-            <Grid container>
-                <Grid item xs={12} sm={6}>
-                    {/* <BusinessCardL> */}
-                    <form
-                        className={classes.form}
-                        // onSubmit={handleSubmit}
-                        noValidate>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    select
-                                    id="account"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.account}
-                                    onChange={handleInputChange('account')}
-                                    SelectProps={{
-                                        MenuProps: {
-                                            className: classes.menu,
-                                        },
-                                    }}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                >
-                                    {accounts.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    id="firstName"
-                                    placeholder="First Name*"
-                                    // className={classes.textField}
-                                    value={values.firstName}
-                                    onChange={handleInputChange('firstName')}
-                                    margin="dense"
-                                    fullWidth
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    id="lastName"
-                                    placeholder="Last Name*"
-                                    // className={classes.textField}
-                                    value={values.lastName}
-                                    onChange={handleInputChange('lastName')}
-                                    margin="dense"
-                                    fullWidth
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    id="company"
-                                    placeholder="Company"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.company}
-                                    onChange={handleInputChange('company')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                                <TextField
-                                    id="title-position"
-                                    placeholder="Title/Position"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.titlePosition}
-                                    onChange={handleInputChange('title-position')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
+            <Paper>
+                <Grid container>
+                    <Grid item className={classes.paper} xs={12} sm={6}>
+                        <form
+                            className={classes.form}
+                            // onSubmit={handleSubmit}
+                            noValidate>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        select
+                                        id="account"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.account}
+                                        onChange={handleInputChange('account')}
+                                        SelectProps={{
+                                            MenuProps: {
+                                                className: classes.menu,
+                                            },
+                                        }}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    >
+                                        {accounts.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        id="firstName"
+                                        placeholder="First Name*"
+                                        className={classes.textField}
+                                        value={values.firstName}
+                                        onChange={handleInputChange('firstName')}
+                                        margin="dense"
+                                        fullWidth
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        required
+                                        id="lastName"
+                                        placeholder="Last Name*"
+                                        className={classes.textField}
+                                        value={values.lastName}
+                                        onChange={handleInputChange('lastName')}
+                                        margin="dense"
+                                        fullWidth
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        id="company"
+                                        placeholder="Company"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.company}
+                                        onChange={handleInputChange('company')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        id="titlePosition"
+                                        placeholder="Title/Position"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.titlePosition}
+                                        onChange={handleInputChange('titlePosition')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
 
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    id="email"
-                                    placeholder="Email*"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.email}
-                                    onChange={handleInputChange('email')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                                <TextField
-                                    id="phone"
-                                    placeholder="Phone"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.phone}
-                                    onChange={handleInputChange('phone')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                                <TextField
-                                    id="website"
-                                    placeholder="Website"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.website}
-                                    onChange={handleInputChange('website')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        required
+                                        id="email"
+                                        placeholder="Email*"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.email}
+                                        onChange={handleInputChange('email')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>                                    
+                                    <TextField
+                                        id="phone"
+                                        placeholder="Phone"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.phone}
+                                        onChange={handleInputChange('phone')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12}>                                   
+                                    <TextField
+                                        id="website"
+                                        placeholder="Website"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.website}
+                                        onChange={handleInputChange('website')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
 
-                            <Grid item xs={12}>
-                                <TextField
-                                    id="address-street"
-                                    placeholder="Street"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.addressStreet}
-                                    onChange={handleInputChange('address-street')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
+                                <Grid item xs={12}>
+                                    <TextField
+                                        id="addressStreet"
+                                        placeholder="Street"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.addressStreet}
+                                        onChange={handleInputChange('addressStreet')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        id="addressCity"
+                                        placeholder="City"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.addressCity}
+                                        onChange={handleInputChange('addressCity')}
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+                                <Grid item xs={6} sm={3}>
+                                    <TextField
+                                        select
+                                        id="addressState"
+                                        fullWidth
+                                        className={classes.textField}
+                                        value={values.addressState}
+                                        onChange={handleInputChange('addressState')}
+                                        SelectProps={{
+                                            MenuProps: {
+                                                className: classes.menu,
+                                            },
+                                        }}
+                                        margin="dense"
+                                        fullWidth
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    >
+                                        {addressStates.map(option => (
+                                            <MenuItem key={option.value} value={option.value}>
+                                                {option.label}
+                                            </MenuItem>
+                                        ))}
+                                    </TextField>
+                                </Grid>
+                                <Grid item xs={6} sm={3}>
+                                    <TextField
+                                        id="addressZipcode"
+                                        placeholder="Zip Code"
+                                        className={classes.textField}
+                                        value={values.addressZipcode}
+                                        onChange={handleInputChange('addressZipcode')}
+                                        margin="dense"
+                                        fullWidth
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                    <TextField
+                                        id="notes"
+                                        placeholder="Notes"
+                                        className={classes.textField}
+                                        value={values.notes}
+                                        onChange={handleInputChange('notes')}
+                                        fullWidth
+                                        multiline
+                                        rows="4"
+                                        margin="dense"
+                                        InputLabelProps={{ shrink: true }}
+                                        InputProps={{ readOnly: editState }}
+                                    />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    id="address-city"
-                                    placeholder="City"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.addressCity}
-                                    onChange={handleInputChange('address-city')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
-                            <Grid item xs={6} sm={3}>
-                                <TextField
-                                    select
-                                    id="address-state"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.addressState}
-                                    onChange={handleInputChange('address-state')}
-                                    SelectProps={{
-                                        MenuProps: {
-                                            className: classes.menu,
-                                        },
-                                    }}
-                                    margin="dense"
-                                    fullWidth
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                >
-                                    {addressStates.map(option => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
-                            </Grid>
-                            <Grid item xs={6} sm={3}>
-                                <TextField
-                                    id="address-zipcode"
-                                    placeholder="Zip Code"
-                                    className={classes.textField}
-                                    value={values.addressZipcode}
-                                    onChange={handleInputChange('address-zipcode')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    id="notes"
-                                    placeholder="Notes"
-                                    fullWidth
-                                    multiline
-                                    rows="4"
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: editState }}
-                                />
+                        </form>
+
+                        <Grid item xs={12}>
+                            <Grid container justify="space-between">
+                                <IconButton className={classes.button} aria-label="ArrowBack">
+                                    <ArrowBack className={classes.iconHover} color="inherit"/>
+                                </IconButton>
+                                <IconButton className={classes.button} aria-label="Edit">
+                                    <Edit className={classes.iconHover} color="inherit" onClick={() => setEditState(false)} />
+                                </IconButton>
                             </Grid>
                         </Grid>
-                        {/* </ BusinessCardL> */}
-                    </form>
+                    </Grid>
 
-                    <IconButton className={classes.button} aria-label="Edit">
-                        <Edit className={classes.iconHover} color="error" onClick={() => setEditState(false)} />
-                    </IconButton>
-
-                    <ButtonS />
+                    <Grid item xs={12} sm={6}>
+                        {/* preview component */}
+                    </Grid>
                 </Grid>
-
-                <Grid item xs={12} sm={6}>
-                    {/* preview component */}
-                </Grid>
-            </Grid>
+            </Paper>
         </Container>
     );
 }

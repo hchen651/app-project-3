@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Components
-import ButtonL from "../../components/ButtonL";
+// import ButtonL from "../../components/ButtonL";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-// import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -23,6 +23,13 @@ const useStyles = makeStyles(theme => ({
     btn: {
         margin: theme.spacing(3),
         width: 300,
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        borderRadius: 0,
+        border: 0,
+        color: 'white',
+        height: 48,
+        padding: '0 30px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     },
     card: {
         margin: theme.spacing(3),
@@ -41,7 +48,12 @@ export default function Home() {
             <div className={classes.paper}>
                 <Typography component="h3" variant="h5" gutterBottom>
                     <Box lineHeight={1.5} align="center">
-                    Imprint is a revolutionary app that can scan, import, and organize business cards into your phone with a simple snap and tap. In moments, the card is saved with the subject's company and contact information neatly organized to be easily referenced at any time
+                    Imprint is a revolutionary app that can scan, import, and organize business cards into your phone with a simple snap and tap. 
+                    </Box>
+                </Typography>
+                <Typography component="h5" variant="body1">
+                    <Box align="center">
+                    In moments, the card is saved with the subject's company and contact information neatly organized to be easily referenced at any time.
                     </Box>
                 </Typography>
                 <Card className={classes.card}>
@@ -53,16 +65,16 @@ export default function Home() {
                 </Card>
                 <Typography component="h5" variant="body1">
                     <Box align="center">
-                    Picture this, you sit down at the bar and next to you, sits a man in a clean cut suit and you start chatting about business. One thing leads to another and Mr. P. Bateman slides you his card embossed with beautiful Silian Grail lettering. You wake up the next morning, fully intent on calling up Mr. Bateman and you open your wallet only to find it overflowing with other business cards that may have once been important but now seem trivial to the multi-million dollar deal Bateman was posing to you. You scramble, dig, and ultimately sit down, defeated, having accepted you lost the business card of a potentially lucrative client. The frustration hits you like an ax to the face. How could've this been avoided? We are proud to introduce you to Imprint
+                    Picture this, you sit down at the bar and next to you, sits a man in a clean cut suit and you start chatting about business. One thing leads to another and Mr. P. Bateman slides you his card embossed with beautiful Silian Grail lettering. You wake up the next morning, fully intent on calling up Mr. Bateman and you open your wallet only to find it overflowing with other business cards that may have once been important but now seem trivial to the multi-million dollar deal Bateman was posing to you. You scramble, dig, and ultimately sit down, defeated, having accepted you lost the business card of a potentially lucrative client. The frustration hits you like an ax to the face. How could've this been avoided? We are proud to introduce you to Imprint:
                     </Box>
                 </Typography>
-                <ButtonL
-                className={classes.btn}
-                variant="contained"
-                color="secondary"
-                href="/signup">
+                <Button
+                    className={classes.btn}
+                    variant="contained"
+                    color="secondary"
+                    href="/signup">
                     SIGN UP
-                </ButtonL>
+                </Button>
             </div>
         </Container>
     )

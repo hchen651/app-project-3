@@ -11,6 +11,7 @@ import Add from '@material-ui/icons/AddCircle';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import Cancel from '@material-ui/icons/Cancel';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
 import PersonAdd from '@material-ui/icons/PersonAdd';
@@ -49,6 +50,9 @@ export default function IconButtons() {
             </IconButton>
             <IconButton className={classes.button} aria-label="Cancel">
                 <Cancel className={classes.iconHover} color="error"/>
+            </IconButton>
+            <IconButton className={classes.button} aria-label="CheckCircle">
+                <CheckCircle className={classes.iconHover} color="error"/>
             </IconButton>
             <IconButton className={classes.button} aria-label="Delete">
                 <Delete className={classes.iconHover} color="error"/>
