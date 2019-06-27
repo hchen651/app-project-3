@@ -69,8 +69,8 @@ function App() {
           </Switch>
 
           {/* Test routes for auth, will probably be removed later, just ignore */}
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          {/* <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} /> */}
           
           <Footer />
         </div>
