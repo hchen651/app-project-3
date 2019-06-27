@@ -108,15 +108,6 @@ export default function Detail() {
 
     const [editState, setEditState] = useState(true);
 
-    const toggleEdit = () => {
-        if (editState == true){
-            setEditState(false);
-        }
-        else {
-            setEditState(true);
-        }
-    };
-
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };

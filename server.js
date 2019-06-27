@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const multer = require('multer');
-const upload = multer({dest:__dirname + '/uploads/images'});
+//const multer = require('multer');
+//const upload = multer({dest:__dirname + '/uploads/images'});
 
 const routes = require("./routes");
 //const users = require("./routes/api/users");
@@ -48,12 +48,12 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 //multer middleware for image uploading
-app.post('/upload', upload.single('photo'), (req, res) => {
-  if(req.file) {
-    res.json(req.file);
-  }
-  else throw 'error';
-})
+// app.post('/upload', upload.single('photo'), (req, res) => {
+//   if(req.file) {
+//     res.json(req.file);
+//   }
+//   else throw 'error';
+// })
 
 // Routes - old
 //app.use("/api/users", users);
