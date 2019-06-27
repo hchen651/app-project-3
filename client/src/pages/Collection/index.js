@@ -13,6 +13,7 @@ import { Typography } from '@material-ui/core';
 
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import axios from 'axios';
 
 
 // custom styles
@@ -71,6 +72,17 @@ let bizCards = [
     createData( "5", "Bob", "company5" ),
 ];
 
+function fetchData() {
+    axios.get("/api/users")
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err =>
+      console.log("GET error /api/users")
+    );
+}
+
+
 // display all cards
 export default function Collection() {
     const classes = useStyles();
@@ -81,7 +93,7 @@ export default function Collection() {
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
-
+    fetchData();
     useEffect(() => {
         if (values.filter === "by alphabetical") {
             let newCards = [];
