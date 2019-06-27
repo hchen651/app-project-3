@@ -23,8 +23,7 @@ export default function About() {
     const classes = useStyles();
 
     return (
-        <div>
-            <Navbar />
+            // <Navbar />
             <Container component="main" maxWidth="sm">
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5" gutterBottom>
@@ -42,6 +41,5 @@ export default function About() {
                     {/* team member cards here */}
                 </div>
             </Container>
-        </div>
     )
 };

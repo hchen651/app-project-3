@@ -66,19 +66,6 @@ export default function ButtonAppBar() {
           <ListItemText primary="Imprint" />
         </ListItemLink>
       </List>
-      {/* before login Navbar. need authentication */}
-      <Divider />
-      <List>
-        <ListItemLink href="/about">
-          <ListItemText primary="About" />
-        </ListItemLink>
-        <ListItemLink href="/signin">
-          <ListItemText primary="Sign In" />
-        </ListItemLink>        
-        <ListItemLink href="/contact">
-          <ListItemText primary="Contact Us" />
-        </ListItemLink>
-      </List>
       {/* after login Navbar */}
       <Divider />
       <List>
