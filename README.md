@@ -35,7 +35,7 @@ _(content pending)_
 [Henry Chen](https://github.com/hchen651), [Rachael Tseng](https://github.com/hojungt), [Marusol Lee](https://github.com/marulee), and [Richard Hu](https://github.com/rzhanghu64).
 
 ### Special Thanks
-Jamal O'Garro and Michael Russo for all of their patience and support toward the development of the project.
+Pete Tascio and Michael Russo for all of their patience and support toward the development of the project.
 
 ### NPMs & Libraries
 - Back-End

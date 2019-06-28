@@ -43,7 +43,7 @@ const cardSeed = [
   {
     firstName: "Patrick",
     lastName: "Bateman",
-    cardType: "Business",
+    cardType: "Small Business",
     companyName: "Pierce & Pierce",
     email: "silianrail@pierce.inc",
     phone: "(212)555-6342",
@@ -56,7 +56,7 @@ const cardSeed = [
   {
     firstName: "David",
     lastName: "Patten",
-    cardType: "Business",
+    cardType: "Small Business",
     companyName: "Pierce & Pierce",
     email: "eggshell@pierce.inc",
     phone: "(212)555-6342",
@@ -69,7 +69,7 @@ const cardSeed = [
   {
     firstName: "Timothy",
     lastName: "Bryce",
-    cardType: "Business",
+    cardType: "Small Business",
     companyName: "Pierce & Pierce",
     email: "palenimbuswhite@pierce.inc",
     phone: "(212)555-6342",
@@ -82,7 +82,7 @@ const cardSeed = [
   {
     firstName: "Paul",
     lastName: "Allen",
-    cardType: "Business",
+    cardType: "Small Business",
     companyName: "Pierce & Pierce",
     email: "watermark@pierce.inc",
     phone: "(212)555-6342",
@@ -96,7 +96,7 @@ const cardSeed = [
     firstName: "John",
     lastName: "Wick",
     cardType: "Personal",
-    companyName: "",
+    companyName: "Freelance",
     email: "doglover101@babayaga.net",
     phone: "(123)456-7890",
     website: "",
