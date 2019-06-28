@@ -7,19 +7,19 @@ const cardSchema = new Schema({
     cardType: String,
     companyName: String,
     email: String,
-    phone: String,
+    phone: {
+        type: String,
+        min: [10, 'Please enter a valid phone number.'],
+        max: [10, 'Please enter a valid phone number.'],
+    },
     website: String,
     street: String,
     city: String,
     state: String,
     zipcode: {
-        type: Number,
+        type: String,
         min: [5, 'Please enter a valid ZIP code.'],
         max: [5, 'Please enter a valid ZIP code.'],
-        validate: {
-            validator: Number.isInteger,
-            message: '{VALUE} is not an integer value'
-        }
     }
 });
 

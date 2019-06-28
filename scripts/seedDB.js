@@ -21,7 +21,7 @@ const userSeed = [
     street: "123 Fake St.",
     city: "New York",
     state: "NY",
-    zipcode: 10003
+    zipcode: "10003"
   },
   {
     password: "testpass",
@@ -35,7 +35,7 @@ const userSeed = [
     street: "123 Fake St.",
     city: "New York",
     state: "NY",
-    zipcode: 10003
+    zipcode: "10003"
   }
 ];
 
@@ -51,7 +51,7 @@ const cardSeed = [
     street: "358 Exchange Place",
     city: "New York",
     state: "NY",
-    zipcode: 10099
+    zipcode: "10099"
   },
   {
     firstName: "David",
@@ -64,7 +64,7 @@ const cardSeed = [
     street: "358 Exchange Place",
     city: "New York",
     state: "NY",
-    zipcode: 10099
+    zipcode: "10099"
   },
   {
     firstName: "Timothy",
@@ -77,7 +77,7 @@ const cardSeed = [
     street: "358 Exchange Place",
     city: "New York",
     state: "NY",
-    zipcode: 10099
+    zipcode: "10099"
   },
   {
     firstName: "Paul",
@@ -90,7 +90,7 @@ const cardSeed = [
     street: "358 Exchange Place",
     city: "New York",
     state: "NY",
-    zipcode: 10099
+    zipcode: "10099"
   },
     {
     firstName: "John",
@@ -103,7 +103,7 @@ const cardSeed = [
     street: "2 South William Street",
     city: "New York",
     state: "NY",
-    zipcode: 10004
+    zipcode: "10004"
   }
 ];
 
