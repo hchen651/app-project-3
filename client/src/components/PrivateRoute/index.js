@@ -1,23 +1,26 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-const PrivateRoute = ({ component: Component, auth, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      auth.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/login" />
-      )
-    }
-  />
-);
-PrivateRoute.propTypes = {
-  auth: PropTypes.object.isRequired
-};
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-export default connect(mapStateToProps)(PrivateRoute);
+
+export default class ProtectedRoute extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authenticated: localStorage.getItem('imprintAuth')
+    };
+  }
+
+  render() {
+    const { component: Component, ...props } = this.props
+
+    return (
+      <Route 
+        {...props} 
+        render={props => (
+          this.state.authenticated ?
+            <Component {...props} /> :
+            <Redirect to='/signin' />
+        )} 
+      />
+    )
+  }
+}

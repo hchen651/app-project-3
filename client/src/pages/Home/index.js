@@ -82,7 +82,7 @@ export default function Home() {
                 </Typography>
                 <Typography component="body1" variant="body1" gutterBottom>
                     <Box textAlign="justify">
-                    We are proud to introduce you to <strong>Imprint</strong>, a business card collector and organizer that dynamically displayes and updates information.
+                    We are proud to introduce you to <strong>Imprint</strong>, a business card collector and organizer that dynamically displays and updates information.
                     </Box>
                 </Typography>
             </div>

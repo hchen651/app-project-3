@@ -62,6 +62,7 @@ export default function SignIn() {
             alert("Please enter a valid email and password.");
         }
         else {
+            localStorage.setItem('imprintAuth', true);
             setTimeout(function () {
                 window.location.assign('/collection/');
             }, 1500);

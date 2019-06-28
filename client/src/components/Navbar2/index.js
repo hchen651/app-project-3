@@ -46,6 +46,10 @@ export default function ButtonAppBar() {
     right: false,
   });
 
+  const logoutUser = () =>{
+    localStorage.setItem('imprintAuth', false);
+  }
+
   const toggleDrawer = (side, open) => event => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -76,12 +80,12 @@ export default function ButtonAppBar() {
           <ListItemText primary="My Profile" />
         </ListItemLink>        
         <ListItemLink href="/">
-          <ListItemText primary="Log Out" />
+          <ListItemText primary="Log Out" onClick={logoutUser()}/>
         </ListItemLink>
       </List>
     </div>
   );
-
+  
   return (
     <div className={classes.root}>
       <AppBar color="default" position="static">
