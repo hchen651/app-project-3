@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// Components
+import Navbar from "../../components/Navbar";
+
 // Material UI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -59,6 +62,8 @@ export default function SignIn() {
     };
 
     return (
+        <React.Fragment>
+        <Navbar />
         <Container component="main" maxWidth="xs">
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5" gutterBottom>
@@ -118,58 +123,6 @@ export default function SignIn() {
                 </form>
             </div>
         </Container>
+        </React.Fragment>
     );
 }
-
-// import React, { useState } from "react";
-
-// // React Components
-// import { Col, Row, Container } from "../../components/Grid";
-
-// const Signin = () => {
-// const [username, setUsername] = useState();
-// const [password, setPassword] = useState();
-
-// const handleSubmit = e => {
-//     e.preventDefault();
-// };
-
-// return (
-//     <div>
-//     <div className="mt-4">
-//         <h2>Sign In</h2>
-//     </div>
-//     <form onSubmit={handleSubmit}>
-//         <Container className="mt-3 px-5">
-//         <Row className="form-group">
-//             <Col size="12">
-//             <input
-//                 className="form-control"
-//                 type="text"
-//                 placeholder="Username"
-//                 name="username"
-//                 onChange={e => setUsername(e.target.value)}
-//             />
-//             </Col>
-//         </Row>
-//         <Row className="form-group">
-//             <Col size="12">
-//             <input
-//                 className="form-control"
-//                 type="password"
-//                 placeholder="Password"
-//                 name="password"
-//                 onChange={e => setPassword(e.target.value)}
-//             />
-//             </Col>
-//         </Row>
-//         <button className="btn btn-success" type="submit">
-//             Submit
-//         </button>
-//         </Container>
-//     </form>
-//     </div>
-// );
-// };
-
-// export default Signin;

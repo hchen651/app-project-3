@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
+import Navbar2 from '../../components/Navbar2';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -137,6 +138,8 @@ function Collection() {
         )
     }
     return (
+        <React.Fragment>
+        <Navbar2 />
         <Container className={classes.paper} component="main" maxWidth="xl">
             {/* {values.filter} */}
             <Typography component="h1" variant="h5" align="center" gutterBottom>
@@ -219,6 +222,7 @@ function Collection() {
                 ))}
             </Grid>
         </Container>
+        </React.Fragment>
     )
 }
 

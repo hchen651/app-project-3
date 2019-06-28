@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 
-
 // React Components
-import ButtonS from "../../components/ButtonS";
+import Navbar2 from "../../components/Navbar2";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,7 +14,6 @@ import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 import axios from 'axios';
-
 
 // custom styles
 const useStyles = makeStyles(theme => ({
@@ -110,16 +108,16 @@ export default function Detail() {
     }
 
     return (
+        <React.Fragment>
+        <Navbar2 />
         <Container className={classes.paper} component="main" maxWidth="xl">
             <Typography component="h1" variant="h5" align="center" gutterBottom>
             Card Detail for [Name]
             </Typography>
             <Grid container>
                 <Grid item xs={12} sm={6}>
-                    {/* <BusinessCardL> */}
                     <form 
                         className={classes.form} 
-                        // onSubmit={handleSubmit}
                         noValidate>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -137,8 +135,7 @@ export default function Detail() {
                                     }}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
-                                    >
+                                >
                                     {cardTypes.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
                                         {option.label}
@@ -157,7 +154,6 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -171,7 +167,6 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -184,7 +179,6 @@ export default function Detail() {
                                     onChange={handleInputChange('companyName')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                                 {/* <TextField
                                     id="titlePosition"
@@ -195,7 +189,6 @@ export default function Detail() {
                                     onChange={handleInputChange('titlePosition')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 /> */}
                             </Grid>
 
@@ -210,7 +203,6 @@ export default function Detail() {
                                     onChange={handleInputChange('email')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                                 <TextField
                                     id="phone"
@@ -221,7 +213,6 @@ export default function Detail() {
                                     onChange={handleInputChange('phone')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                                 <TextField
                                     id="website"
@@ -232,7 +223,6 @@ export default function Detail() {
                                     onChange={handleInputChange('website')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
 
@@ -246,7 +236,6 @@ export default function Detail() {
                                     onChange={handleInputChange('street')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -259,7 +248,6 @@ export default function Detail() {
                                     onChange={handleInputChange('city')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                             <Grid item xs={6} sm={3}>
@@ -278,8 +266,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    
-                                    >
+                                >
                                     {states.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
                                         {option.label}
@@ -296,7 +283,6 @@ export default function Detail() {
                                     onChange={handleInputChange('zipcode')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -308,17 +294,15 @@ export default function Detail() {
                                     rows="4"
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    
                                 />
                             </Grid>
                         </Grid>
-                    {/* </ BusinessCardL> */}
                     </form>
                     <Button
-                    className={classes.btn}
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {submitDetail()}}
+                        className={classes.btn}
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {submitDetail()}}
                     >
                     submit
                     </Button>
@@ -329,5 +313,6 @@ export default function Detail() {
                 </Grid>
             </Grid>
         </Container>
+        </React.Fragment>
     );
 }

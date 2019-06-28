@@ -3,6 +3,7 @@ import React, { useState } from "react";
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
 import Navbar from '../../components/Navbar';
+
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -23,7 +24,8 @@ export default function About() {
     const classes = useStyles();
 
     return (
-            // <Navbar />
+        <React.Fragment>
+            <Navbar />
             <Container component="main" maxWidth="sm">
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5" gutterBottom>
@@ -41,5 +43,6 @@ export default function About() {
                     {/* team member cards here */}
                 </div>
             </Container>
+        </React.Fragment>
     )
 };

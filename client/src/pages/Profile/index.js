@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // React Components
-import ButtonS from "../../components/ButtonS";
+import Navbar2 from "../../components/Navbar2";
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -83,6 +83,8 @@ export default function Detail() {
     };
 
     return (
+        <React.Fragment>
+        <Navbar2 />
         <Container className={classes.paper} component="main" maxWidth="xl">
             <Typography component="h1" variant="h5" align="center" gutterBottom>
             Card Detail for [Name]
@@ -292,5 +294,6 @@ export default function Detail() {
                 </Grid>
             </Grid>
         </Container>
+        </React.Fragment>
     );
 }
