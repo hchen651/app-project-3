@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Redirect } from 'react-router'
+import { Route, Redirect } from 'react-router';
+import { withRouter } from 'react-router-dom';
 
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
@@ -16,6 +17,7 @@ import Button from '@material-ui/core/button';
 
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+
 import axios from 'axios';
 
 
@@ -71,12 +73,13 @@ function fetchData() {
 }
 
 // display all cards
-export default function Collection() {
+function Collection() {
     const classes = useStyles();
 
     const [values, setValues] = useState({filter: ""});
     const [allCards, setAllCards] = useState([]);
     const [reRender, setReRender] = useState(false);
+    const [detailCard, setDetailCard] = useState({});
   
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
@@ -85,15 +88,11 @@ export default function Collection() {
     const viewDetail = (id) => {
         axios.get(`/api/users/${id}`)
         .then(res => {
-            console.log(res);
+            setDetailCard(res.data);
             setReRender(true);
-            if (reRender) {
-                return <Redirect to="/detail"/>
-            }
-
         })
         .catch(err =>
-            console.log("GET error /apir/users/:id")
+            console.log("GET error /api/users/:id")
         );
         // console.log(id);
     };
@@ -136,7 +135,7 @@ export default function Collection() {
         return(
             <Redirect to={{
                 pathname: '/detail',
-                props: { firstName: "Henry" }
+                props: detailCard
             }}/>
         )
     }
@@ -225,3 +224,5 @@ export default function Collection() {
         </Container>
     )
 }
+
+export default withRouter(Collection);
