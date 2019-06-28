@@ -59,7 +59,7 @@ const useStyles = makeStyles(theme => ({
 const cardTypes = [
     { value: 'Personal', label: 'Personal' },
     { value: 'Company', label: 'Company' },
-    { value: 'Small business', label: 'Small Business' },
+    { value: 'Small Business', label: 'Small Business' },
 ];
 
 // dropdown list - address state abbrev.
