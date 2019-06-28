@@ -115,7 +115,6 @@ function Collection() {
         .catch(err =>
             console.log("GET error /api/cards/:id")
         );
-        // console.log(id);
     };
 
     // axios get request for all existing cards

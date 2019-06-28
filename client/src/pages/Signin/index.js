@@ -57,14 +57,14 @@ export default function SignIn() {
             email: values.email,
             password: values.password
         };
-        if (userData.email == "" || userData.password == "") {
+        if (userData.email === "" || userData.password === "") {
 
             alert("Please enter a valid email and password.");
         }
         else {
             setTimeout(function () {
                 window.location.assign('/collection/');
-            }, 2000);
+            }, 1500);
             
         }
 

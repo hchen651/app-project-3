@@ -54,7 +54,7 @@ export default function SignUp() {
         email: values.email,
         password: values.password
     };
-    if (userData.firstName == "" || userData.lastName == "" || userData.email == "" || userData.password == ""){
+    if (userData.firstName === "" || userData.lastName === "" || userData.email === "" || userData.password === ""){
       alert("Please fill out all fields.");
     }
     else{
