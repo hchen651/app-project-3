@@ -25,7 +25,7 @@ import axios from 'axios';
 // custom styles
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: theme.spacing(6),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(6),
     },
     paper: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 0, 
     },
     header: {
-        marginBottom: theme.spacing(6),
+        marginBottom: theme.spacing(4),
     },
     textField: {
         margin: theme.spacing(1),
@@ -45,7 +45,6 @@ const useStyles = makeStyles(theme => ({
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        // marginTop: theme.spacing(4),
     },
     iconButton: {
         margin: theme.spacing(2),
@@ -109,6 +108,7 @@ export default function Detail() {
         city: '',
         state: 'NY',
         zipcode: '',
+        notes: '',
     });
 
     const[reRender, setReRender] = useState(false);

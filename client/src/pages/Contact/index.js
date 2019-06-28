@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 const useStyles = makeStyles(theme => ({
     paper: {
         marginTop: theme.spacing(6),
-        marginBottom: theme.spacing(3),
+        marginBottom: theme.spacing(6),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

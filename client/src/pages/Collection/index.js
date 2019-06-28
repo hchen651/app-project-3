@@ -28,23 +28,20 @@ import axios from 'axios';
 // custom styles
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(6),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(6),
         alignItems: 'center',
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        marginBottom: theme.spacing(4),
+        marginBottom: theme.spacing(2),
     },
     textField: {
 
     },
     menu: {
         width: 300,
-    },
-    cover: {
-        height: 50
     },
     iconButtonS: {
         margin: theme.spacing(1),
@@ -53,7 +50,7 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
         color: red[500],
         },
-        fontSize: 30,
+        fontSize: 26,
     },
     iconButtonL: {
         margin: theme.spacing(2),
@@ -63,6 +60,9 @@ const useStyles = makeStyles(theme => ({
         color: red[500],
         },
         fontSize: 50,
+    },
+    content: {
+        paddingBottom: '0',
     },
 }));
 
@@ -193,29 +193,28 @@ function Collection() {
                 justify="center">
                 <Grid item xs={9}>
                     <TextField
-                        id="outlined-search"
+                        id="search"
                         label="Search"
                         type="search"
                         className={classes.textField}
-                        margin="normal"
+                        margin="dense"
                         variant="outlined"
                         fullWidth
                     />
                 </Grid>
                 <Grid item xs>
                     <TextField
-                        id="outlined-select-filter"
                         select
-                        // label="Select"
+                        id="filter"
                         className={classes.textField}
                         value={values.filter}
                         onChange={handleChange('filter')}
                         SelectProps={{
-                        MenuProps: {
-                            className: classes.menu,
-                        },
+                            MenuProps: {
+                                className: classes.menu,
+                            },
                         }}
-                        margin="normal"
+                        margin="dense"
                         variant="outlined"
                         fullWidth
                     >
@@ -233,22 +232,17 @@ function Collection() {
                         <BusinessCardS>
                             <div className={classes.details}>
                                 <CardContent className={classes.content}>
-                                    <Typography component="h5" variant="h5">
-                                        {card.firstName} {card.lastName}
+                                    <Typography component="h5" variant="h6">
+                                        {card.firstName}
+                                    </Typography>
+                                    <Typography component="h5" variant="h6">
+                                        {card.lastName}
                                     </Typography>
                                     <Typography variant="subtitle1" color="textSecondary">
                                         {card.companyName}
                                     </Typography>
-                                    {/* <Typography variant="subtitle1" color="textSecondary">
-                                        {card.titlePosition}
-                                    </Typography> */}
                                 </CardContent>
                             </div>
-                            {/* <CardMedia
-                                className={classes.cover}
-                                image=""
-                                title=""
-                            /> */}
                             <IconButton 
                                 className={classes.iconButtonS} 
                                 aria-label="VerticalAlignTop"

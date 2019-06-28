@@ -11,17 +11,26 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import Stars from '@material-ui/icons/Stars';
+import Link from '@material-ui/core/Link';
+
+// FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(6),
-        marginBottom: theme.spacing(3),
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(6),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
+    icon: {
+        marginRight: theme.spacing(1),
+        color: '#424242',
+        fontSize: 20,
+    }
 }));
 
 export default function About() {
@@ -35,16 +44,29 @@ export default function About() {
                     <Typography component="h1" variant="h5" gutterBottom>
                         About Imprint
                     </Typography>
-                    <Typography component="h5" variant="body1">
+                    <Typography component="h5" variant="body1" align="center">
+                        <Box mb={1}>
+                        <strong>Imprint</strong> is a business card collector and organizer that features dynamically displayed and updated information.
+                        With <strong>Imprint</strong>, you can:
+                        </Box>
                         <Box>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+                        - Add new business cards
+                        </Box>
+                        <Box>
+                        - Browse stored business cards
+                        </Box>
+                        <Box>
+                        - View information of each card
+                        </Box>
+                        <Box>
+                        - Edit, update, and delete card information
                         </Box>
                     </Typography>
+                    <br />
                     <br />
                     <Typography component="h1" variant="h5" gutterBottom>
                         Project Team
                     </Typography>
-                    {/* team member cards here */}
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <BusinessCardS>
@@ -56,11 +78,14 @@ export default function About() {
                                         <Typography variant="subtitle1" color="textSecondary">
                                             Full-Stack Web Developer
                                         </Typography>
+                                        <Link color="inherit" href="https://github.com/hojungt">
+                                            <FontAwesomeIcon className= {classes.icon} icon={faGithub} />
+                                        </Link>
+                                        <Link color="inherit" href="https://www.linkedin.com/in/rachael-ho-jung-tseng/">
+                                            <FontAwesomeIcon className= {classes.icon} icon={faLinkedin} />
+                                        </Link>
                                     </CardContent>
                                 </div>
-                                <IconButton className={classes.iconButtonS} aria-label="memberIcon">
-                                    <Stars className={classes.iconHoverS} color="inherit"/>
-                                </IconButton>
                             </BusinessCardS>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -73,11 +98,11 @@ export default function About() {
                                         <Typography variant="subtitle1" color="textSecondary">
                                             Full-Stack Web Developer
                                         </Typography>
+                                        <Link color="inherit" href="https://github.com/hchen651">
+                                            <FontAwesomeIcon className= {classes.icon} icon={faGithub} />
+                                        </Link>
                                     </CardContent>
                                 </div>
-                                <IconButton className={classes.iconButtonS} aria-label="memberIcon">
-                                    <Stars className={classes.iconHoverS} color="inherit"/>
-                                </IconButton>
                             </BusinessCardS>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -88,13 +113,13 @@ export default function About() {
                                             Marusol Lee
                                         </Typography>
                                         <Typography variant="subtitle1" color="textSecondary">
-                                            Full-Stack Web Developer
+                                            Full-Stack Intern
                                         </Typography>
+                                        <Link color="inherit" href="https://github.com/marulee">
+                                            <FontAwesomeIcon className= {classes.icon} icon={faGithub} />
+                                        </Link>
                                     </CardContent>
                                 </div>
-                                <IconButton className={classes.iconButtonS} aria-label="memberIcon">
-                                    <Stars className={classes.iconHoverS} color="inherit"/>
-                                </IconButton>
                             </BusinessCardS>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -105,13 +130,13 @@ export default function About() {
                                             Richard Hu
                                         </Typography>
                                         <Typography variant="subtitle1" color="textSecondary">
-                                            Full-Stack Web Developer
+                                            Full-Stack Intern
                                         </Typography>
+                                        <Link color="inherit" href="https://github.com/rzhanghu64">
+                                            <FontAwesomeIcon className= {classes.icon} icon={faGithub} />
+                                        </Link>
                                     </CardContent>
                                 </div>
-                                <IconButton className={classes.iconButtonS} aria-label="memberIcon">
-                                    <Stars className={classes.iconHoverS} color="inherit"/>
-                                </IconButton>
                             </BusinessCardS>
                         </Grid>
                     </Grid>

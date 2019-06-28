@@ -8,11 +8,11 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        background: 'linear-gradient(90deg, #cddc39 10%, #f0f4c3 90%)',
+        background: 'linear-gradient(45deg, #757575 20%, #bdbdbd 90%)',
         borderRadius: 0,
         border: 0,
         color: 'white',
-        padding: '0 10px',
+        padding: '0 6px',
         boxShadow: 0,
     },
 };

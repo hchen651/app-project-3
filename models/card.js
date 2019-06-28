@@ -20,7 +20,8 @@ const cardSchema = new Schema({
         type: String,
         min: [5, 'Please enter a valid ZIP code.'],
         max: [5, 'Please enter a valid ZIP code.'],
-    }
+    },
+    notes: String
 });
 
 const Card = mongoose.model("Card", cardSchema);
