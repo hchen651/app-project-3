@@ -79,19 +79,6 @@ export default function ButtonAppBar() {
           <ListItemText primary="Contact Us" />
         </ListItemLink>
       </List>
-      {/* after login Navbar */}
-      <Divider />
-      <List>
-        <ListItemLink href="/collection">
-          <ListItemText primary="Collection" />
-        </ListItemLink>
-        <ListItemLink href="/profile">
-          <ListItemText primary="My Profile" />
-        </ListItemLink>        
-        <ListItemLink href="/">
-          <ListItemText primary="Log Out" />
-        </ListItemLink>
-      </List>
     </div>
   );
 

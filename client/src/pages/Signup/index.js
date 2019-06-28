@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// Components
+import Navbar from "../../components/Navbar";
+
 // Material UI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -55,6 +58,8 @@ export default function SignUp() {
   };
 
   return (
+    <React.Fragment>
+    <Navbar />
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <Typography component="h1" variant="h5" gutterBottom>
@@ -139,5 +144,6 @@ export default function SignUp() {
         </form>
       </div>
     </Container>
+    </React.Fragment>
   );
 }

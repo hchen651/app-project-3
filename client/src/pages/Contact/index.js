@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+// Component
+import Navbar from '../../components/Navbar';
+
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -36,6 +39,8 @@ export default function Contact() {
     const classes = useStyles();
 
     return (
+        <React.Fragment>
+        <Navbar />
         <Container component="main" maxWidth="sm">
             <div className={classes.paper}>
                 <Typography component="h1" variant="h5" gutterBottom>
@@ -85,5 +90,6 @@ export default function Contact() {
                 </form>
             </div>
         </Container>
+        </React.Fragment>
     )
 };

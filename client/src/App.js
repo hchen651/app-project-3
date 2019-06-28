@@ -26,6 +26,7 @@ import Login from "./components/auth/Login";
 
 // Components
 import Navbar from "./components/Navbar";
+import Navbar2 from "./components/Navbar2";
 import Footer from "./components/Footer";
 
 // Material UI
@@ -53,7 +54,8 @@ if (localStorage.jwtToken) {
 function App() {
   return (
     <Provider store={store}>
-      <Navbar />
+      {/* <Navbar />
+      <Navbar2 /> */}
       <Container maxWidth="xl">
         <Router>
           <div>
