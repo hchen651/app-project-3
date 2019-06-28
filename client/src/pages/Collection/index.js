@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
@@ -72,14 +72,14 @@ const filters = [
         value: 'by date added',
         label: 'by date added',
     },
-    // {
-    //     value: 'by alphabetical',
-    //     label: 'by alphabetical',
-    // },
     {
         value: 'by category',
         label: 'by category',
     },
+    // {
+    //     value: 'by alphabetical',
+    //     label: 'by alphabetical',
+    // },
     // {
     //     value: 'by favorite',
     //     label: 'by favorite',
