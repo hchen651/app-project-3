@@ -22,7 +22,6 @@ export default class AllRoutes extends Component {
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
-
                 {/* Private Routes */}
                 <Route exact path='/collection' component={Collection} />
                 <Route exact path="/detail" component={Detail} />

@@ -20,6 +20,7 @@ import Edit from '@material-ui/icons/Edit';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import Tooltip from '@material-ui/core/Tooltip';
 import Delete from '@material-ui/icons/Delete';
+import Done from '@material-ui/icons/Done';
 
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -135,6 +136,7 @@ export default function Detail({ location }) {
 
     const [editState, setEditState] = useState(true);
     const [goBackClick, setGoBackClick] = useState(false);
+    const [hideEdit, setHideEdit] = useState('none');
 
     // Modal states
     const [open, setOpen] = useState(false);
@@ -145,6 +147,10 @@ export default function Detail({ location }) {
     };
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const submitEdit = () => {
+        setHideEdit('none');
     };
     
     //   {() => deleteEntry(values._id)}
@@ -388,6 +394,21 @@ export default function Detail({ location }) {
                                     </Grid>
                                 </Grid>
                             </form>
+
+                            <Grid item xs={12}>
+                                <Grid container justify="space-between">
+                                    <Tooltip title="Save Changes">
+                                        <IconButton
+                                            className={classes.iconButton}
+                                            aria-label="SaveChanges"
+                                            onClick={() => { submitEdit() }}
+                                            disabled={hideEdit}>
+                                             
+                                            <Done className={classes.iconHover} color="inherit" />
+                                        </IconButton>
+                                    </Tooltip>                                
+                                </Grid>
+                            </Grid>
 
                             <Grid item xs={12}>
                                 <Grid container justify="space-between">
