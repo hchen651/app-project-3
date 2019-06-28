@@ -13,14 +13,17 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
-
-import Button from '@material-ui/core/Button';
-
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
-import axios from 'axios';
+import { red } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
+import Add from '@material-ui/icons/AddCircle';
+import MoreHoriz from '@material-ui/icons/MoreHoriz';
+import VerticalAlignTop from '@material-ui/icons/VerticalAlignTop';
+import Tooltip from '@material-ui/core/Tooltip';
 
+import axios from 'axios';
 
 // custom styles
 const useStyles = makeStyles(theme => ({
@@ -42,7 +45,25 @@ const useStyles = makeStyles(theme => ({
     },
     cover: {
         height: 50
-    }
+    },
+    iconButtonS: {
+        margin: theme.spacing(1),
+    },
+    iconHoverS: {
+        '&:hover': {
+        color: red[500],
+        },
+        fontSize: 30,
+    },
+    iconButtonL: {
+        margin: theme.spacing(2),
+    },
+    iconHoverL: {
+        '&:hover': {
+        color: red[500],
+        },
+        fontSize: 50,
+    },
 }));
 
 // filter options
@@ -51,18 +72,18 @@ const filters = [
         value: 'by date added',
         label: 'by date added',
     },
-    {
-        value: 'by alphabetical',
-        label: 'by alphabetical',
-    },
+    // {
+    //     value: 'by alphabetical',
+    //     label: 'by alphabetical',
+    // },
     {
         value: 'by category',
         label: 'by category',
     },
-    {
-        value: 'by favorite',
-        label: 'by favorite',
-    },
+    // {
+    //     value: 'by favorite',
+    //     label: 'by favorite',
+    // },
 ];
 
 // all cards data (need mongoDB)
@@ -78,11 +99,13 @@ function Collection() {
     const [allCards, setAllCards] = useState([]);
     const [reRender, setReRender] = useState(false);
     const [detailCard, setDetailCard] = useState({});
+    const [newCard, setNewCard] = useState(false);
   
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
 
+    // axios get request for a specific card's detail by id
     const viewDetail = (id) => {
         axios.get(`/api/cards/${id}`)
         .then(res => {
@@ -95,18 +118,25 @@ function Collection() {
         // console.log(id);
     };
 
+    // axios get request for all existing cards
     useEffect(() => {
         axios.get("/api/cards")
         .then(res => {
-         var fetchedCards = res.data;
-        setAllCards(fetchedCards);
-        console.log(fetchedCards);
-    })
-    .catch(err =>
-      console.log("GET error /api/cards")
-    );
+            var fetchedCards = res.data;
+            setAllCards(fetchedCards);
+            // console.log(fetchedCards);
+        })
+        .catch(err =>
+            console.log("GET error /api/cards")
+        );
     }, [])
 
+    // When Add button is clicked, set newCard state to true
+    const addCard = () => {
+        setNewCard(true);
+    }
+    
+    // Additional Feature: filter by
     // useEffect(() => {
     //     if (values.filter === "by alphabetical") {
     //         let newCards = [];
@@ -129,6 +159,16 @@ function Collection() {
     // }, [values.filter, allCards]);
 
 
+    // When newCard, redirect to newCard page
+    if (newCard){
+        return(
+            <Redirect to={{
+                pathname: '/newcard',
+            }} />
+        )
+    }
+
+    // When reRender, redirect to detail page
     if(reRender){
         return(
             <Redirect to={{
@@ -137,6 +177,7 @@ function Collection() {
             }}/>
         )
     }
+
     return (
         <React.Fragment>
         <Navbar2 />
@@ -209,18 +250,31 @@ function Collection() {
                                 image=""
                                 title=""
                             /> */}
-                            <Button
-                            className={classes.btn}
-                            variant="contained"
-                            color="secondary"
-                            // href="/detail"
-                            onClick={() => {viewDetail(card._id)}}>
-                            view detail
-                            </Button>
+                            <IconButton 
+                                className={classes.iconButtonS} 
+                                aria-label="VerticalAlignTop"
+                                onClick={() => {viewDetail(card._id)}}>
+                                <MoreHoriz className={classes.iconHoverS} color="inherit"/>
+                            </IconButton>
                         </BusinessCardS>
                     </Grid>
                 ))}
             </Grid>
+
+            <Grid container justify="center">
+                <Tooltip title="New Card">
+                    <IconButton 
+                        className={classes.iconButtonL} 
+                        aria-label="Add"
+                        onClick={() => {addCard()}}>
+                        <Add className={classes.iconHoverL} color="inherit"/>
+                    </IconButton>
+                </Tooltip>
+                {/* <IconButton className={classes.iconButtonL} aria-label="VerticalAlignTop">
+                    <VerticalAlignTop className={classes.iconHoverL} color="inherit"/>
+                </IconButton> */}
+            </Grid>
+
         </Container>
         </React.Fragment>
     )
