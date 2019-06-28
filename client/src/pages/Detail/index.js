@@ -21,6 +21,9 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import Tooltip from '@material-ui/core/Tooltip';
 import Delete from '@material-ui/icons/Delete';
 
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+
 // custom styles
 const useStyles = makeStyles(theme => ({
     root: {
@@ -38,13 +41,10 @@ const useStyles = makeStyles(theme => ({
     },
     textField: {
         margin: theme.spacing(1),
-        // marginTop: theme.spacing(1),
-        // marginBottom: theme.spacing(1),
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        // marginTop: theme.spacing(4),
     },
     iconButton: {
         margin: theme.spacing(2),
@@ -57,6 +57,14 @@ const useStyles = makeStyles(theme => ({
             color: red[500],
         },
         fontSize: 30,
+    },
+    modal: {
+        position: 'absolute',
+        width: 300,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(4),
+        outline: 'none',
     },
 }));
 
@@ -88,6 +96,22 @@ const states = [
     { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
 ];
 
+// material UI modal preset function
+function rand() {
+    return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+    const top = 50 + rand();
+    const left = 50 + rand();
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
+
 // display card details
 export default function Detail({ location }) {
     const classes = useStyles();
@@ -111,6 +135,19 @@ export default function Detail({ location }) {
 
     const [editState, setEditState] = useState(true);
     const [goBackClick, setGoBackClick] = useState(false);
+
+    // Modal states
+    const [open, setOpen] = useState(false);
+    const [modalStyle] = useState(getModalStyle);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    
+    //   {() => deleteEntry(values._id)}
 
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
@@ -138,6 +175,7 @@ export default function Detail({ location }) {
         )
     }
 
+    // Delete entry from db
     const deleteEntry = (id) => {
         axios.delete(`/api/cards/${id}`)
         .then(res => {
@@ -147,6 +185,7 @@ export default function Detail({ location }) {
             console.log("DELETE error /api/cards/:id")
         );
     }
+
 
     return (
         <React.Fragment>
@@ -372,10 +411,33 @@ export default function Detail({ location }) {
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Delete"
-                                            onClick={() => deleteEntry(values._id)}>
+                                            onClick={handleOpen}>
                                             <Delete className={classes.iconHover} color="inherit" />
                                         </IconButton>
                                     </Tooltip>
+                                    <Modal
+                                        aria-labelledby="simple-modal-title"
+                                        aria-describedby="simple-modal-description"
+                                        open={open}
+                                        onClose={handleClose}
+                                    >
+                                        <div style={modalStyle} className={classes.modal}>
+                                            <Typography variant="h6" id="modal-title">
+                                                Are you sure you want to delete this card?
+                                            </Typography>
+                                            <Button 
+                                                className={classes.iconButton}
+                                                onClick={() => deleteEntry(values._id)}>
+                                                Yes
+                                            </Button>
+                                            <Button 
+                                                className={classes.iconButton}
+                                                onClick={handleClose}>
+                                                No
+                                            </Button>
+                                        </div>
+                                    </Modal>
+
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -389,75 +451,3 @@ export default function Detail({ location }) {
         </React.Fragment>
     );
 }
-
-
-
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
-// import Modal from '@material-ui/core/Modal';
-// import Button from '@material-ui/core/Button';
-
-// function rand() {
-//   return Math.round(Math.random() * 20) - 10;
-// }
-
-// function getModalStyle() {
-//   const top = 50 + rand();
-//   const left = 50 + rand();
-
-//   return {
-//     top: `${top}%`,
-//     left: `${left}%`,
-//     transform: `translate(-${top}%, -${left}%)`,
-//   };
-// }
-
-// const useStyles = makeStyles(theme => ({
-//   paper: {
-//     position: 'absolute',
-//     width: 400,
-//     backgroundColor: theme.palette.background.paper,
-//     boxShadow: theme.shadows[5],
-//     padding: theme.spacing(4),
-//     outline: 'none',
-//   },
-// }));
-
-// export default function SimpleModal() {
-//   const [open, setOpen] = React.useState(false);
-//   getModalStyle is not a pure function, we roll the style only on the first render
-//   const [modalStyle] = React.useState(getModalStyle);
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
-
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
-//   const classes = useStyles();
-
-//   return (
-//     <div>
-//       <Typography gutterBottom>Click to get the full Modal experience!</Typography>
-//       <Button onClick={handleOpen}>Open Modal</Button>
-//       <Modal
-//         aria-labelledby="simple-modal-title"
-//         aria-describedby="simple-modal-description"
-//         open={open}
-//         onClose={handleClose}
-//       >
-//         <div style={modalStyle} className={classes.paper}>
-//           <Typography variant="h6" id="modal-title">
-//             Text in a modal
-//           </Typography>
-//           <Typography variant="subtitle1" id="simple-modal-description">
-//             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-//           </Typography>
-//           <SimpleModal />
-//         </div>
-//       </Modal>
-//     </div>
-//   );
-// }
