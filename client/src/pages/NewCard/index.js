@@ -91,12 +91,12 @@ export default function Detail() {
     };
 
     const submitDetail = () => {
-        axios.post(`/api/users`, values)
+        axios.post(`/api/cards`, values)
         .then(res => {
             setReRender(true);
         })
         .catch(err =>
-            console.log("GET error /api/users")
+            console.log("GET error /api/cards")
         ); 
         console.log(values);
         console.log("clicked");
