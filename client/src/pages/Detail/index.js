@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect } from 'react-router';
 
 // Components
 import Navbar2 from "../../components/Navbar2";
@@ -10,15 +11,14 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
-import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import Tooltip from '@material-ui/core/Tooltip';
 
-//
 // custom styles
 const useStyles = makeStyles(theme => ({
     root: {
@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
         flexWrap: 'wrap',
         // marginTop: theme.spacing(4),
     },
-    button: {
+    iconButton: {
         margin: theme.spacing(2),
     },
     input: {
@@ -52,11 +52,10 @@ const useStyles = makeStyles(theme => ({
     },
     iconHover: {
         '&:hover': {
-        color: red[700],
+        color: red[500],
         },
         fontSize: 30,
     },
-
 }));
 
 // dropdown list - cardType
@@ -87,9 +86,6 @@ const states = [
     { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
 ];
 
-// card detail data (need mongoDB)
-
-
 // display card details
 export default function Detail({ location }) {
     const classes = useStyles();
@@ -111,6 +107,7 @@ export default function Detail({ location }) {
     });
 
     const [editState, setEditState] = useState(true);
+    const [goBackClick, setGoBackClick] = useState(false);
 
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
@@ -120,9 +117,24 @@ export default function Detail({ location }) {
         if(location.props){
             setValues(location.props)
         }
-        
     })
-   
+
+    // When ArrowBack button is clicked, set reRender state to true
+    const goBack = () => {
+        // console.log('clicked');
+        // console.log(editState);
+        setGoBackClick(true);
+    }
+
+    // When reRender is true, redirect to collection page
+    if (goBackClick){
+        return(
+            <Redirect to={{
+                pathname: '/collection',
+            }} />
+        )
+    }
+
     return (
         <React.Fragment>
         <Navbar2 />
@@ -135,7 +147,6 @@ export default function Detail({ location }) {
                     <Grid item className={classes.paper} xs={12} sm={6}>
                         <form
                             className={classes.form}
-                            // onSubmit={handleSubmit}
                             noValidate>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
@@ -193,7 +204,7 @@ export default function Detail({ location }) {
                                 <Grid item xs={12}>
                                     <TextField
                                         id="companyName"
-                                        placeholder="companyName"
+                                        placeholder="Company Name"
                                         fullWidth
                                         className={classes.textField}
                                         value={values.companyName}
@@ -203,8 +214,6 @@ export default function Detail({ location }) {
                                         InputProps={{ readOnly: editState }}
                                     />
                                 </Grid>
-                                
-
                                 <Grid item xs={12}>
                                     <TextField
                                         required
@@ -310,7 +319,6 @@ export default function Detail({ location }) {
                                         InputProps={{ readOnly: editState }}
                                     />
                                 </Grid>
-
                                 <Grid item xs={12}>
                                     <TextField
                                         id="notes"
@@ -331,12 +339,19 @@ export default function Detail({ location }) {
 
                         <Grid item xs={12}>
                             <Grid container justify="space-between">
-                                <IconButton className={classes.button} aria-label="ArrowBack">
-                                    <ArrowBack className={classes.iconHover} color="inherit"/>
-                                </IconButton>
-                                <IconButton className={classes.buttons} aria-label="Edit" onClick={() => setEditState(!editState)}>
-                                    <Edit className={classes.iconHover} color="inherit"  />
-                                </IconButton>
+                                <Tooltip title="Go Back">
+                                    <IconButton 
+                                        className={classes.iconButton} 
+                                        aria-label="ArrowBack"
+                                        onClick={() => {goBack()}}>
+                                        <ArrowBack className={classes.iconHover} color="inherit"/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Edit">
+                                    <IconButton className={classes.iconButton} aria-label="Edit" onClick={() => setEditState(!editState)}>
+                                        <Edit className={classes.iconHover} color="inherit"/>
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                     </Grid>

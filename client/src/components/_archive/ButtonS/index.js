@@ -39,42 +39,42 @@ export default function IconButtons() {
 
     return (
         <div>
-            <IconButton className={classes.button} aria-label="Add">
-                <Add className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="Add">
+                <Add className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="ArrowBack">
-                <ArrowBack className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="ArrowBack">
+                <ArrowBack className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="ArrowForward">
-                <ArrowForward className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="ArrowForward">
+                <ArrowForward className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="Cancel">
-                <Cancel className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="Cancel">
+                <Cancel className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="CheckCircle">
-                <CheckCircle className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="CheckCircle">
+                <CheckCircle className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="Delete">
-                <Delete className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="Delete">
+                <Delete className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="Edit">
-                <Edit className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="Edit">
+                <Edit className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="PersonAdd">
-                <PersonAdd className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="PersonAdd">
+                <PersonAdd className={classes.iconHover} color="inherit"/>
             </IconButton>
-            <IconButton className={classes.button} aria-label="VerticalAlignTop">
-                <VerticalAlignTop className={classes.iconHover} color="error"/>
+            <IconButton className={classes.iconButton} aria-label="VerticalAlignTop">
+                <VerticalAlignTop className={classes.iconHover} color="inherit"/>
             </IconButton>
 
             <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
             <label htmlFor="icon-button-file">
                 <IconButton
-                    className={classes.button}
+                    className={classes.iconButton}
                     aria-label="Upload picture"
                     component="span"
                     >
-                    <PhotoCamera className={classes.iconHover} color="error" style={{ fontSize: 30 }}/>
+                    <PhotoCamera className={classes.iconHover} color="inherit" style={{ fontSize: 30 }}/>
                 </IconButton>
             </label>
         </div>

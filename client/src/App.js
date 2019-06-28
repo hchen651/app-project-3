@@ -18,15 +18,13 @@ import NewCard from "./pages/NewCard";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import PrivateRoute from "./components/PrivateRoute";
+// import PrivateRoute from "./components/PrivateRoute";
 
 //temporary auth components - will be removed later
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
 // Components
-import Navbar from "./components/Navbar";
-import Navbar2 from "./components/Navbar2";
 import Footer from "./components/Footer";
 
 // Material UI
