@@ -55,15 +55,15 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-// dropdown list - account
-const accounts = [
-    { value: 'personal', label: 'Personal' },
-    { value: 'company', label: 'Company' },
-    { value: 'small business', label: 'Small Business' },
+// dropdown list - cardType
+const cardTypes = [
+    { value: 'Personal', label: 'Personal' },
+    { value: 'Company', label: 'Company' },
+    { value: 'Small business', label: 'Small Business' },
 ];
 
 // dropdown list - address state abbrev.
-const addressStates = [
+const states = [
     { value: 'AL', label: 'AL' }, { value: 'AK', label: 'AK' }, { value: 'AZ', label: 'AZ' },
     { value: 'AR', label: 'AR' }, { value: 'CA', label: 'CA' }, { value: 'CO', label: 'CO' },
     { value: 'CT', label: 'CT' }, { value: 'DE', label: 'DE' }, { value: 'FL', label: 'FL' },
@@ -87,22 +87,22 @@ const addressStates = [
 
 
 // display card details
-export default function Detail() {
+export default function Detail({ location }) {
     const classes = useStyles();
 
-    const [values, setValues] = React.useState({
-        account: 'personal',
+    const [values, setValues] = useState({
+        cardType: 'personal',
         firstName: '',
         lastName: '',
-        company: '',
+        companyName: '',
         titlePosition: '',
         email: '',
         phone: '',
         website: '',
-        addressStreet: '',
-        addressCity: '',
-        addressState: 'NY',
-        addressZipcode: '',
+        street: '',
+        city: '',
+        state: 'NY',
+        zipcode: '',
         notes: '',
     });
 
@@ -112,7 +112,15 @@ export default function Detail() {
         setValues({ ...values, [name]: event.target.value });
     };
 
+    useEffect(() => {
+        if(location.props){
+            setValues(location.props)
+        }
+        
+    })
+   
     return (
+      
         <Container className={classes.root} component="main" maxWidth="xl">
             <Typography className={classes.header} component="h1" variant="h5" align="center" gutterBottom>
                 Card Detail for: {values.firstName} {values.lastName}
@@ -128,11 +136,11 @@ export default function Detail() {
                                 <Grid item xs={12}>
                                     <TextField
                                         select
-                                        id="account"
+                                        id="cardType"
                                         fullWidth
                                         className={classes.textField}
-                                        value={values.account}
-                                        onChange={handleInputChange('account')}
+                                        value={values.cardType}
+                                        onChange={handleInputChange('cardType')}
                                         SelectProps={{
                                             MenuProps: {
                                                 className: classes.menu,
@@ -142,7 +150,7 @@ export default function Detail() {
                                         InputLabelProps={{ shrink: true }}
                                         InputProps={{ readOnly: editState }}
                                     >
-                                        {accounts.map(option => (
+                                        {cardTypes.map(option => (
                                             <MenuItem key={option.value} value={option.value}>
                                                 {option.label}
                                             </MenuItem>
@@ -179,30 +187,18 @@ export default function Detail() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
-                                        id="company"
-                                        placeholder="Company"
+                                        id="companyName"
+                                        placeholder="companyName"
                                         fullWidth
                                         className={classes.textField}
-                                        value={values.company}
-                                        onChange={handleInputChange('company')}
+                                        value={values.companyName}
+                                        onChange={handleInputChange('companyName')}
                                         margin="dense"
                                         InputLabelProps={{ shrink: true }}
                                         InputProps={{ readOnly: editState }}
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        id="titlePosition"
-                                        placeholder="Title/Position"
-                                        fullWidth
-                                        className={classes.textField}
-                                        value={values.titlePosition}
-                                        onChange={handleInputChange('titlePosition')}
-                                        margin="dense"
-                                        InputLabelProps={{ shrink: true }}
-                                        InputProps={{ readOnly: editState }}
-                                    />
-                                </Grid>
+                                
 
                                 <Grid item xs={12}>
                                     <TextField
@@ -247,12 +243,12 @@ export default function Detail() {
 
                                 <Grid item xs={12}>
                                     <TextField
-                                        id="addressStreet"
+                                        id="street"
                                         placeholder="Street"
                                         fullWidth
                                         className={classes.textField}
-                                        value={values.addressStreet}
-                                        onChange={handleInputChange('addressStreet')}
+                                        value={values.street}
+                                        onChange={handleInputChange('street')}
                                         margin="dense"
                                         InputLabelProps={{ shrink: true }}
                                         InputProps={{ readOnly: editState }}
@@ -260,12 +256,12 @@ export default function Detail() {
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
-                                        id="addressCity"
+                                        id="city"
                                         placeholder="City"
                                         fullWidth
                                         className={classes.textField}
-                                        value={values.addressCity}
-                                        onChange={handleInputChange('addressCity')}
+                                        value={values.city}
+                                        onChange={handleInputChange('city')}
                                         margin="dense"
                                         InputLabelProps={{ shrink: true }}
                                         InputProps={{ readOnly: editState }}
@@ -274,11 +270,11 @@ export default function Detail() {
                                 <Grid item xs={6} sm={3}>
                                     <TextField
                                         select
-                                        id="addressState"
+                                        id="state"
                                         fullWidth
                                         className={classes.textField}
-                                        value={values.addressState}
-                                        onChange={handleInputChange('addressState')}
+                                        value={values.state}
+                                        onChange={handleInputChange('state')}
                                         SelectProps={{
                                             MenuProps: {
                                                 className: classes.menu,
@@ -289,7 +285,7 @@ export default function Detail() {
                                         InputLabelProps={{ shrink: true }}
                                         InputProps={{ readOnly: editState }}
                                     >
-                                        {addressStates.map(option => (
+                                        {states.map(option => (
                                             <MenuItem key={option.value} value={option.value}>
                                                 {option.label}
                                             </MenuItem>
@@ -298,11 +294,11 @@ export default function Detail() {
                                 </Grid>
                                 <Grid item xs={6} sm={3}>
                                     <TextField
-                                        id="addressZipcode"
+                                        id="zipcode"
                                         placeholder="Zip Code"
                                         className={classes.textField}
-                                        value={values.addressZipcode}
-                                        onChange={handleInputChange('addressZipcode')}
+                                        value={values.zipcode}
+                                        onChange={handleInputChange('zipcode')}
                                         margin="dense"
                                         fullWidth
                                         InputLabelProps={{ shrink: true }}
@@ -333,8 +329,8 @@ export default function Detail() {
                                 <IconButton className={classes.button} aria-label="ArrowBack">
                                     <ArrowBack className={classes.iconHover} color="inherit"/>
                                 </IconButton>
-                                <IconButton className={classes.button} aria-label="Edit">
-                                    <Edit className={classes.iconHover} color="inherit" onClick={() => setEditState(false)} />
+                                <IconButton className={classes.buttons} aria-label="Edit" onClick={() => setEditState(!editState)}>
+                                    <Edit className={classes.iconHover} color="inherit"  />
                                 </IconButton>
                             </Grid>
                         </Grid>

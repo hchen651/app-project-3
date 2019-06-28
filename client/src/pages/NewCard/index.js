@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect } from 'react-router';
+
 
 // React Components
 import ButtonS from "../../components/ButtonS";
@@ -10,6 +12,10 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+
+import axios from 'axios';
+
 
 // custom styles
 const useStyles = makeStyles(theme => ({
@@ -28,15 +34,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-// dropdown list - account
-const accounts = [
-    { value: 'personal', label: 'Personal'},
-    { value: 'company', label: 'Company'},
-    { value: 'small business', label: 'Small Business'},
+// dropdown list - cardType
+const cardTypes = [
+    { value: 'Personal', label: 'Personal'},
+    { value: 'Company', label: 'Company'},
+    { value: 'Small business', label: 'Small Business'},
 ];
 
 // dropdown list - address state abbrev.
-const addressStates = [
+const states = [
     { value: 'AL', label: 'AL' }, { value: 'AK', label: 'AK' }, { value: 'AZ', label: 'AZ' },
     { value: 'AR', label: 'AR' }, { value: 'CA', label: 'CA' }, { value: 'CO', label: 'CO' },
     { value: 'CT', label: 'CT' }, { value: 'DE', label: 'DE' }, { value: 'FL', label: 'FL' },
@@ -64,24 +70,44 @@ export default function Detail() {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
-        account: 'personal',
+        password: "password",
+        email: '',
         firstName: '',
         lastName: '',
-        company: '',
-        titlePosition: '',
-        email: '',
+        cardType: 'Personal',
+        companyName: '',
         phone: '',
         website: '',
-        addressStreet: '',
-        addressCity: '',
-        addressState: 'NY',
-        addressZipcode: '',
-        editState: false
+        street: '',
+        city: '',
+        state: 'NY',
+        zipcode: '',
     });
+
+    const[reRender, setReRender] = useState(false);
 
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
+
+    const submitDetail = () => {
+        axios.post(`/api/users`, values)
+        .then(res => {
+            setReRender(true);
+        })
+        .catch(err =>
+            console.log("GET error /api/users")
+        ); 
+        console.log(values);
+        console.log("clicked");
+    }
+    if(reRender){
+        return(
+            <Redirect to={{
+                pathname: '/collection'
+            }}/>
+        )
+    }
 
     return (
         <Container className={classes.paper} component="main" maxWidth="xl">
@@ -99,11 +125,11 @@ export default function Detail() {
                             <Grid item xs={12}>
                                 <TextField
                                     select
-                                    id="account"
+                                    id="cardType"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.account}
-                                    onChange={handleInputChange('account')}
+                                    value={values.cardType}
+                                    onChange={handleInputChange('cardType')}
                                     SelectProps={{
                                         MenuProps: {
                                             className: classes.menu,
@@ -111,9 +137,9 @@ export default function Detail() {
                                     }}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                     >
-                                    {accounts.map(option => (
+                                    {cardTypes.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                         </MenuItem>
@@ -131,7 +157,7 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -145,32 +171,32 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
-                                    id="company"
-                                    placeholder="Company"
+                                    id="companyName"
+                                    placeholder="companyName"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.company}
-                                    onChange={handleInputChange('company')}
+                                    value={values.companyName}
+                                    onChange={handleInputChange('companyName')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
-                                <TextField
-                                    id="title-position"
+                                {/* <TextField
+                                    id="titlePosition"
                                     placeholder="Title/Position"
                                     fullWidth
                                     className={classes.textField}
                                     value={values.titlePosition}
-                                    onChange={handleInputChange('title-position')}
+                                    onChange={handleInputChange('titlePosition')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
-                                />
+                                    
+                                /> */}
                             </Grid>
 
                             <Grid item xs={12}>
@@ -184,7 +210,7 @@ export default function Detail() {
                                     onChange={handleInputChange('email')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                                 <TextField
                                     id="phone"
@@ -195,7 +221,7 @@ export default function Detail() {
                                     onChange={handleInputChange('phone')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                                 <TextField
                                     id="website"
@@ -206,44 +232,44 @@ export default function Detail() {
                                     onChange={handleInputChange('website')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
 
                             <Grid item xs={12}>
                                 <TextField
-                                    id="address-street"
+                                    id="street"
                                     placeholder="Street"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressStreet}
-                                    onChange={handleInputChange('address-street')}
+                                    value={values.street}
+                                    onChange={handleInputChange('street')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    id="address-city"
+                                    id="city"
                                     placeholder="City"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressCity}
-                                    onChange={handleInputChange('address-city')}
+                                    value={values.city}
+                                    onChange={handleInputChange('city')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                             <Grid item xs={6} sm={3}>
                                 <TextField
                                     select
-                                    id="address-state"
+                                    id="state"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressState}
-                                    onChange={handleInputChange('address-state')}
+                                    value={values.state}
+                                    onChange={handleInputChange('state')}
                                     SelectProps={{
                                         MenuProps: {
                                             className: classes.menu,
@@ -252,9 +278,9 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                     >
-                                    {addressStates.map(option => (
+                                    {states.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                         </MenuItem>
@@ -263,14 +289,14 @@ export default function Detail() {
                             </Grid>
                             <Grid item xs={6} sm={3}>
                                 <TextField
-                                    id="address-zipcode"
+                                    id="zipcode"
                                     placeholder="Zip Code"
                                     className={classes.textField}
-                                    value={values.addressZipcode}
-                                    onChange={handleInputChange('address-zipcode')}
+                                    value={values.zipcode}
+                                    onChange={handleInputChange('zipcode')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -282,13 +308,20 @@ export default function Detail() {
                                     rows="4"
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: values.editState }}
+                                    
                                 />
                             </Grid>
                         </Grid>
                     {/* </ BusinessCardL> */}
                     </form>
-                    <ButtonS />
+                    <Button
+                    className={classes.btn}
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => {submitDetail()}}
+                    >
+                    submit
+                    </Button>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
