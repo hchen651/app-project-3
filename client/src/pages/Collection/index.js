@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect } from 'react-router'
 
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
@@ -10,6 +11,8 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+
+import Button from '@material-ui/core/button';
 
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -64,57 +67,79 @@ function createData( id, name, title ) {
     return { id, name, title };
 }
 
-let bizCards = [
-    createData( "1", "Peter", "company1" ),
-    createData( "2", "Rachel", "company2" ),
-    createData( "3", "Adam", "company3" ),
-    createData( "4", "Cathy", "company4" ),
-    createData( "5", "Bob", "company5" ),
-];
-
 function fetchData() {
-    axios.get("/api/users")
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err =>
-      console.log("GET error /api/users")
-    );
 }
-
 
 // display all cards
 export default function Collection() {
     const classes = useStyles();
 
     const [values, setValues] = useState({filter: ""});
-    const [allCards, setBizCards] = useState(bizCards);
+    const [allCards, setAllCards] = useState([]);
+    const [reRender, setReRender] = useState(false);
   
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
-    fetchData();
-    useEffect(() => {
-        if (values.filter === "by alphabetical") {
-            let newCards = [];
-            newCards = allCards.sort((card, otherCard) => {
-                if(card.name < otherCard.name){
-                    return -1;
-                }
-            });
-            setBizCards(newCards);
-        }
-        if(values.filter === "by date added"){
-            let newCards = [];
-            newCards = allCards.sort((card, otherCard) => {
-                if(card.name > otherCard.name){
-                    return -1;
-                }
-            });
-            setBizCards(newCards);
-        }  
-    }, [values.filter, allCards]);
 
+    const viewDetail = (id) => {
+        axios.get(`/api/users/${id}`)
+        .then(res => {
+            console.log(res);
+            setReRender(true);
+            if (reRender) {
+                return <Redirect to="/detail"/>
+            }
+
+        })
+        .catch(err =>
+            console.log("GET error /apir/users/:id")
+        );
+        // console.log(id);
+    };
+
+    useEffect(() => {
+        axios.get("/api/users")
+        .then(res => {
+         var fetchedCards = res.data;
+        setAllCards(fetchedCards);
+        console.log(fetchedCards);
+    })
+    .catch(err =>
+      console.log("GET error /api/users")
+    );
+    }, [])
+
+    // useEffect(() => {
+    //     if (values.filter === "by alphabetical") {
+    //         let newCards = [];
+    //         newCards = allCards.sort((card, otherCard) => {
+    //             if(card.name < otherCard.name){
+    //                 return -1;
+    //             }
+    //         });
+    //         setBizCards(newCards);
+    //     }
+    //     if(values.filter === "by date added"){
+    //         let newCards = [];
+    //         newCards = allCards.sort((card, otherCard) => {
+    //             if(card.name > otherCard.name){
+    //                 return -1;
+    //             }
+    //         });
+    //         setBizCards(newCards);
+    //     }  
+    // }, [values.filter, allCards]);
+
+
+    if(reRender){
+        return(
+            <Redirect to={{
+                pathname: '/detail',
+                props: { firstName: "Henry" }
+            }}/>
+        )
+    }
     return (
         <Container className={classes.paper} component="main" maxWidth="xl">
             {/* {values.filter} */}
@@ -165,23 +190,34 @@ export default function Collection() {
             </Grid>
             <Grid container spacing={2}>
                 {allCards.map(card => (
-                    <Grid item key={card.id} xs={6} md={3}>
+                    <Grid item key={card._id} xs={6} md={3}>
                         <BusinessCardS>
                             <div className={classes.details}>
                                 <CardContent className={classes.content}>
                                     <Typography component="h5" variant="h5">
-                                        {card.name}
+                                        {card.firstName} {card.lastName}
                                     </Typography>
                                     <Typography variant="subtitle1" color="textSecondary">
-                                        {card.title}
+                                        {card.companyName}
                                     </Typography>
+                                    {/* <Typography variant="subtitle1" color="textSecondary">
+                                        {card.titlePosition}
+                                    </Typography> */}
                                 </CardContent>
                             </div>
-                            <CardMedia
+                            {/* <CardMedia
                                 className={classes.cover}
                                 image=""
                                 title=""
-                            />
+                            /> */}
+                            <Button
+                            className={classes.btn}
+                            variant="contained"
+                            color="secondary"
+                            // href="/detail"
+                            onClick={() => {viewDetail(card._id)}}>
+                            view detail
+                            </Button>
                         </BusinessCardS>
                     </Grid>
                 ))}

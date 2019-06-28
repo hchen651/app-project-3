@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const path = require("path");
 //const multer = require('multer');
 //const upload = multer({dest:__dirname + '/uploads/images'});
 
@@ -27,8 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  console.log("in production");
+  app.use(express.static(path.join(__dirname, "client/build")));
 }
+app.use(express.static(path.join(__dirname, "client/public")));
 
 // Connect to the Mongo DB
 mongoose

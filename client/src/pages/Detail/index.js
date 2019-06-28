@@ -87,7 +87,7 @@ const addressStates = [
 
 
 // display card details
-export default function Detail() {
+export default function Detail({ props }) {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
@@ -112,7 +112,13 @@ export default function Detail() {
         setValues({ ...values, [name]: event.target.value });
     };
 
+    useEffect(() => {
+        console.log(editState);
+        console.log(props);
+    })
+   
     return (
+      
         <Container className={classes.root} component="main" maxWidth="xl">
             <Typography className={classes.header} component="h1" variant="h5" align="center" gutterBottom>
                 Card Detail for: {values.firstName} {values.lastName}
@@ -333,8 +339,8 @@ export default function Detail() {
                                 <IconButton className={classes.button} aria-label="ArrowBack">
                                     <ArrowBack className={classes.iconHover} color="inherit"/>
                                 </IconButton>
-                                <IconButton className={classes.button} aria-label="Edit">
-                                    <Edit className={classes.iconHover} color="inherit" onClick={() => setEditState(false)} />
+                                <IconButton className={classes.buttons} aria-label="Edit" onClick={() => setEditState(!editState)}>
+                                    <Edit className={classes.iconHover} color="inherit"  />
                                 </IconButton>
                             </Grid>
                         </Grid>

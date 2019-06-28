@@ -96,6 +96,8 @@ router.post("/login", (req, res) => {
   });
 });
 
+
+
 // Matches with "/api/users"
 router.route("/")
   .get(userController.findAll)
