@@ -69,9 +69,6 @@ function createData( id, name, title ) {
     return { id, name, title };
 }
 
-function fetchData() {
-}
-
 // display all cards
 function Collection() {
     const classes = useStyles();
@@ -86,26 +83,26 @@ function Collection() {
     };
 
     const viewDetail = (id) => {
-        axios.get(`/api/users/${id}`)
+        axios.get(`/api/cards/${id}`)
         .then(res => {
             setDetailCard(res.data);
             setReRender(true);
         })
         .catch(err =>
-            console.log("GET error /api/users/:id")
+            console.log("GET error /api/cards/:id")
         );
         // console.log(id);
     };
 
     useEffect(() => {
-        axios.get("/api/users")
+        axios.get("/api/cards")
         .then(res => {
          var fetchedCards = res.data;
         setAllCards(fetchedCards);
         console.log(fetchedCards);
     })
     .catch(err =>
-      console.log("GET error /api/users")
+      console.log("GET error /api/cards")
     );
     }, [])
 
