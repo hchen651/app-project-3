@@ -14,7 +14,7 @@ import { Typography } from '@material-ui/core';
 // custom styles
 const useStyles = makeStyles(theme => ({
     paper: {
-        marginTop: theme.spacing(6),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(6),
     },
     textField: {

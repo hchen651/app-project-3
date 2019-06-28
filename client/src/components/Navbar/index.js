@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  appBar: {
+    boxShadow: '0 0 0 0',
+    background: 'white',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -63,7 +67,7 @@ export default function ButtonAppBar() {
     >
       <List>
         <ListItemLink href="/">
-          <ListItemText primary="Imprint" />
+          <ListItemText primary="Home" />
         </ListItemLink>
       </List>
       {/* before login Navbar. need authentication */}
@@ -84,7 +88,7 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar color="default" position="static">
+      <AppBar className={classes.appBar} color="default" position="static">
         <Toolbar>
           <Grid item xs>
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={toggleDrawer('top', true)}>

@@ -18,6 +18,7 @@ import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Edit from '@material-ui/icons/Edit';
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 import Delete from '@material-ui/icons/Delete';
 
@@ -27,7 +28,7 @@ import Button from '@material-ui/core/Button';
 // custom styles
 const useStyles = makeStyles(theme => ({
     root: {
-        marginTop: theme.spacing(6),
+        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(6),
     },
     paper: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles(theme => ({
         boxShadow: 0,
     },
     header: {
-        marginBottom: theme.spacing(6),
+        marginBottom: theme.spacing(4),
     },
     textField: {
         margin: theme.spacing(1),
@@ -133,24 +134,40 @@ export default function Detail({ location }) {
         _id: ''
     });
 
-    const [editState, setEditState] = useState(true);
+    // States - read only, go back, and modal
+    const [readOnlyState, setReadOnlyState] = useState(true);
     const [goBackClick, setGoBackClick] = useState(false);
-
-    // Modal states
     const [open, setOpen] = useState(false);
     const [modalStyle] = useState(getModalStyle);
+    const [buttonDisable, setButtonDisable] = useState(true);
 
+    // console.log(readOnlyState);
+    // console.log(buttonDisable);
+    
+    const handleInputChange = name => event => {
+        setValues({ ...values, [name]: event.target.value });
+    };
+
+    // Edit - switch between edit or read-only
+    const handleEdit = () => {
+        setReadOnlyState(!readOnlyState);
+        setButtonDisable(!buttonDisable);
+
+    }
+    // Button - disable or enable function
+    // const handleBtnDisable = () => {
+    //     setButtonDisable(true);
+    // }
+    // const handleBtnEnable = () => {
+    //     setButtonDisable(false);
+    // }
+
+    // Modal - open and close state function
     const handleOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
         setOpen(false);
-    };
-    
-    //   {() => deleteEntry(values._id)}
-
-    const handleInputChange = name => event => {
-        setValues({ ...values, [name]: event.target.value });
     };
 
     useEffect(() => {
@@ -162,7 +179,7 @@ export default function Detail({ location }) {
     // When ArrowBack button is clicked, set reRender state to true
     const goBack = () => {
         // console.log('clicked');
-        // console.log(editState);
+        // console.log(readOnlyState);
         setGoBackClick(true);
     }
 
@@ -216,7 +233,7 @@ export default function Detail({ location }) {
                                             }}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         >
                                             {cardTypes.map(option => (
                                                 <MenuItem key={option.value} value={option.value}>
@@ -236,7 +253,7 @@ export default function Detail({ location }) {
                                             margin="dense"
                                             fullWidth
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -250,7 +267,7 @@ export default function Detail({ location }) {
                                             margin="dense"
                                             fullWidth
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -263,7 +280,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('companyName')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -277,7 +294,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('email')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -290,7 +307,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('phone')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -303,7 +320,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('website')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
 
@@ -317,7 +334,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('street')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -330,7 +347,7 @@ export default function Detail({ location }) {
                                             onChange={handleInputChange('city')}
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={6} sm={3}>
@@ -349,7 +366,7 @@ export default function Detail({ location }) {
                                             margin="dense"
                                             fullWidth
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         >
                                             {states.map(option => (
                                                 <MenuItem key={option.value} value={option.value}>
@@ -368,7 +385,7 @@ export default function Detail({ location }) {
                                             margin="dense"
                                             fullWidth
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                     <Grid item xs={12}>
@@ -383,7 +400,7 @@ export default function Detail({ location }) {
                                             rows="4"
                                             margin="dense"
                                             InputLabelProps={{ shrink: true }}
-                                            InputProps={{ readOnly: editState }}
+                                            InputProps={{ readOnly: readOnlyState }}
                                         />
                                     </Grid>
                                 </Grid>
@@ -395,24 +412,41 @@ export default function Detail({ location }) {
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="ArrowBack"
-                                            onClick={() => { goBack() }}>
+                                            onClick={() => { goBack() }}
+                                            disabled={!buttonDisable}
+                                        >
                                             <ArrowBack className={classes.iconHover} color="inherit" />
-                                        </IconButton>
-                                    </Tooltip>
-                                    <Tooltip title="Edit">
-                                        <IconButton
-                                            className={classes.iconButton}
-                                            aria-label="Edit"
-                                            onClick={() => setEditState(!editState)}>
-                                            <Edit className={classes.iconHover} color="inherit" />
                                         </IconButton>
                                     </Tooltip>
                                     <Tooltip title="Delete">
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Delete"
-                                            onClick={handleOpen}>
+                                            onClick={handleOpen}
+                                            disabled={buttonDisable}
+                                        >
                                             <Delete className={classes.iconHover} color="inherit" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Update">
+                                        <IconButton
+                                            className={classes.iconButton}
+                                            aria-label="Update"
+                                            onClick={handleOpen}
+                                            disabled={buttonDisable}
+                                        >
+                                            <CheckCircle className={classes.iconHover} color="inherit" />
+                                        </IconButton>
+                                    </Tooltip>                                    
+                                    <Tooltip title="Edit">
+                                        <IconButton
+                                            className={classes.iconButton}
+                                            aria-label="Edit"
+                                            onClick={handleEdit}
+                                            // onClick={handleBtnDisable}
+                                            // disabled={buttonDisable}
+                                        >
+                                            <Edit className={classes.iconHover} color="inherit" />
                                         </IconButton>
                                     </Tooltip>
                                     <Modal
