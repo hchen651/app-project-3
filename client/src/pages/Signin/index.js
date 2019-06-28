@@ -41,11 +41,11 @@ export default function SignIn() {
     //const [email, setEmail] = useState('');
     //const [password, setPassword] = useState('');
 
-    const [values, setValues] = useState({ 
-        email: '', 
-        password: '' 
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
     })
-    
+
     const handleInputChange = e => {
         const { name, value } = e.target
         setValues({ ...values, [name]: value })
@@ -57,72 +57,81 @@ export default function SignIn() {
             email: values.email,
             password: values.password
         };
-        console.log(userData);
-        // to confirm user login information is correct
+        if (userData.email == "" || userData.password == "") {
+
+            alert("Please enter a valid email and password.");
+        }
+        else {
+            setTimeout(function () {
+                window.location.assign('/collection/');
+            }, 2000);
+            
+        }
+
     };
 
     return (
         <React.Fragment>
-        <Navbar />
-        <Container component="main" maxWidth="xs">
-            <div className={classes.paper}>
-                <Typography component="h1" variant="h5" gutterBottom>
-                    Sign In
-                </Typography>
-                <form
-                    className={classes.form}
-                    onSubmit={handleSubmit}
-                    noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        value={values.email}
-                        onChange={handleInputChange}
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        value={values.password}
-                        onChange={handleInputChange}
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
+            <Navbar />
+            <Container component="main" maxWidth="xs">
+                <div className={classes.paper}>
+                    <Typography component="h1" variant="h5" gutterBottom>
                         Sign In
+                </Typography>
+                    <form
+                        className={classes.form}
+                        onSubmit={handleSubmit}
+                        noValidate>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            value={values.email}
+                            onChange={handleInputChange}
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            value={values.password}
+                            onChange={handleInputChange}
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Sign In
                     </Button>
 
-                    <Grid container justify="center">
-                        <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
+                        <Grid container justify="center">
+                            <Grid item>
+                                <Link href="/signup" variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                    </form>
+                </div>
+            </Container>
         </React.Fragment>
     );
 }

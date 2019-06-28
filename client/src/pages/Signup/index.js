@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom'
 
 // Components
 import Navbar from "../../components/Navbar";
@@ -53,8 +54,12 @@ export default function SignUp() {
         email: values.email,
         password: values.password
     };
-    console.log(userData);
-    // to confirm user info has not been registered yet
+    if (userData.firstName == "" && userData.lastName == "" && userData.email == "" && userData.password == ""){
+      alert("Please fill out all fields.");
+    }
+    else{
+      window.location.assign('/signin/');
+    }
   };
 
   return (
