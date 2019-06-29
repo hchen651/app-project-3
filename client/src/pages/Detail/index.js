@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import axios from 'axios';
-import Camera from 'react-html5-camera-photo';
+import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
 
 // Components
 import Navbar2 from "../../components/Navbar2";
@@ -14,6 +14,8 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 
 import { red } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
@@ -490,8 +492,25 @@ export default function Detail({ location }) {
                         <Grid item xs={12} sm={6}>
                             {/* preview component */}
                             <Camera
+                                idealFacingMode = {FACING_MODES.ENVIRONMENT}
+                                idealResolution = {{width: 640, height: 480}}
+                                imageType = {IMAGE_TYPES.JPG}
+                                imageCompression = {0.97}
+                                isMaxResolution = {false}
+                                isImageMirror = {false}
+                                isSilentMode = {true}
+                                isDisplayStartCameraError = {true}
+                                isFullscreen = {true}
+                                sizeFactor = {1}
                                 onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }}
                             />
+                            <Card>
+                                <CardMedia
+                                    className={classes.media}
+                                    image="./public/images/placeholdercard.jpg"
+                                    title="card1"
+                                />
+                            </Card>
                         </Grid>
                     </Grid>
                 </Paper>
