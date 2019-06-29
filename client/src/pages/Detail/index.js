@@ -211,7 +211,7 @@ export default function Detail({ location }) {
             alert("Updated Records!");
         })
         .catch(err =>
-            console.log("DELETE error /api/cards/:id")
+            console.log("PUT error /api/cards/:id")
         );
     };
 
