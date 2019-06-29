@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Redirect } from 'react-router';
+import axios from 'axios';
 
 // React Components
 import Navbar2 from "../../components/Navbar2";
@@ -10,33 +12,60 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+
+import { red } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
+import Edit from '@material-ui/icons/Edit';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import CheckCircle from '@material-ui/icons/CheckCircle';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // custom styles
 const useStyles = makeStyles(theme => ({
-    paper: {
+    root: {
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(6),
     },
+    paper: {
+        borderRadius: 0,
+        border: 0,
+        padding: '20px',
+        boxShadow: 0,
+    },
+    header: {
+        marginBottom: theme.spacing(4),
+    },
     textField: {
-        // marginTop: theme.spacing(1),
-        // marginBottom: theme.spacing(1),
+        margin: theme.spacing(1),
     },
     form: {
         display: 'flex',
         flexWrap: 'wrap',
-        marginTop: theme.spacing(4),
-    }
+    },
+    iconButton: {
+        margin: theme.spacing(2),
+    },
+    input: {
+        display: 'none',
+    },
+    iconHover: {
+        '&:hover': {
+            color: red[500],
+        },
+        fontSize: 30,
+    },
 }));
 
-// dropdown list - account
-const accounts = [
-    { value: 'personal', label: 'Personal'},
-    { value: 'company', label: 'Company'},
-    { value: 'small business', label: 'Small Business'},
+// dropdown list - cardType
+const cardTypes = [
+    { value: 'Personal', label: 'Personal' },
+    { value: 'Company', label: 'Company' },
+    { value: 'Small Business', label: 'Small Business' },
 ];
 
 // dropdown list - address state abbrev.
-const addressStates = [
+const states = [
     { value: 'AL', label: 'AL' }, { value: 'AK', label: 'AK' }, { value: 'AZ', label: 'AZ' },
     { value: 'AR', label: 'AR' }, { value: 'CA', label: 'CA' }, { value: 'CO', label: 'CO' },
     { value: 'CT', label: 'CT' }, { value: 'DE', label: 'DE' }, { value: 'FL', label: 'FL' },
@@ -56,54 +85,80 @@ const addressStates = [
     { value: 'WI', label: 'WI' }, { value: 'WY', label: 'WY' },
 ];
 
-// card detail data (need mongoDB)
-
-
 // display card details
 export default function Detail() {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
-        account: 'personal',
+        cardType: 'personal',
         firstName: '',
         lastName: '',
-        company: '',
+        companyName: '',
         titlePosition: '',
         email: '',
         phone: '',
         website: '',
-        addressStreet: '',
-        addressCity: '',
-        addressState: 'NY',
-        addressZipcode: '',
+        street: '',
+        city: '',
+        state: 'NY',
+        zipcode: '',
+        notes: '',
+        _id: ''
     });
 
+    // States - read only, go back buttons
+    const [readOnlyState, setReadOnlyState] = useState(true);
+    const [goBackClick, setGoBackClick] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [buttonDisable, setButtonDisable] = useState(true);
+    
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
+
+    // Edit - switch between edit or read-only
+    const handleEdit = () => {
+        setReadOnlyState(!readOnlyState);
+        setButtonDisable(!buttonDisable);
+
+    }
+    
+    // When ArrowBack button is clicked, set reRender state to true
+    const goBack = () => {
+        setGoBackClick(true);
+    }
+
+    // When reRender is true, redirect to collection page
+    if (goBackClick) {
+        return (
+            <Redirect to={{
+                pathname: '/collection',
+            }} />
+        )
+    }
 
     return (
         <React.Fragment>
         <Navbar2 />
         <Container className={classes.paper} component="main" maxWidth="xl">
-            <Typography component="h1" variant="h5" align="center" gutterBottom>
-            Card Detail for [Name]
+            <Typography className={classes.header} component="h1" variant="h5" align="center" gutterBottom>
+                {values.firstName} {values.lastName}
             </Typography>
-            <Grid container>
-                <Grid item xs={12} sm={6}>
-                    <form 
-                        className={classes.form} 
-                        // onSubmit={handleSubmit}
-                        noValidate>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
+            <Paper>
+                <Grid container>
+                    <Grid item className={classes.paper} xs={12} sm={6}>
+                        <form 
+                            className={classes.form} 
+                            noValidate>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
                                 <TextField
                                     select
-                                    id="account"
+                                    id="cardType"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.account}
-                                    onChange={handleInputChange('account')}
+                                    value={values.cardType}
+                                    onChange={handleInputChange('cardType')}
                                     SelectProps={{
                                         MenuProps: {
                                             className: classes.menu,
@@ -111,11 +166,11 @@ export default function Detail() {
                                     }}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
-                                    >
-                                    {accounts.map(option => (
+                                    InputProps={{ readOnly: readOnlyState }}
+                                >
+                                    {cardTypes.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
+                                            {option.label}
                                         </MenuItem>
                                     ))}
                                 </TextField>
@@ -125,13 +180,13 @@ export default function Detail() {
                                     required
                                     id="firstName"
                                     placeholder="First Name*"
-                                    // className={classes.textField}
+                                    className={classes.textField}
                                     value={values.firstName}
                                     onChange={handleInputChange('firstName')}
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -139,40 +194,28 @@ export default function Detail() {
                                     required
                                     id="lastName"
                                     placeholder="Last Name*"
-                                    // className={classes.textField}
+                                    className={classes.textField}
                                     value={values.lastName}
                                     onChange={handleInputChange('lastName')}
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
-                                    id="company"
-                                    placeholder="Company"
+                                    id="companyName"
+                                    placeholder="Company Name"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.company}
-                                    onChange={handleInputChange('company')}
+                                    value={values.companyName}
+                                    onChange={handleInputChange('companyName')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
-                                />
-                                <TextField
-                                    id="title-position"
-                                    placeholder="Title/Position"
-                                    fullWidth
-                                    className={classes.textField}
-                                    value={values.titlePosition}
-                                    onChange={handleInputChange('title-position')}
-                                    margin="dense"
-                                    InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
-
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -184,8 +227,10 @@ export default function Detail() {
                                     onChange={handleInputChange('email')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <TextField
                                     id="phone"
                                     placeholder="Phone"
@@ -195,8 +240,10 @@ export default function Detail() {
                                     onChange={handleInputChange('phone')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <TextField
                                     id="website"
                                     placeholder="Website"
@@ -206,44 +253,44 @@ export default function Detail() {
                                     onChange={handleInputChange('website')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
 
                             <Grid item xs={12}>
                                 <TextField
-                                    id="address-street"
+                                    id="street"
                                     placeholder="Street"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressStreet}
-                                    onChange={handleInputChange('address-street')}
+                                    value={values.street}
+                                    onChange={handleInputChange('street')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
-                                    id="address-city"
+                                    id="city"
                                     placeholder="City"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressCity}
-                                    onChange={handleInputChange('address-city')}
+                                    value={values.city}
+                                    onChange={handleInputChange('city')}
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={3}>
                                 <TextField
                                     select
-                                    id="address-state"
+                                    id="state"
                                     fullWidth
                                     className={classes.textField}
-                                    value={values.addressState}
-                                    onChange={handleInputChange('address-state')}
+                                    value={values.state}
+                                    onChange={handleInputChange('state')}
                                     SelectProps={{
                                         MenuProps: {
                                             className: classes.menu,
@@ -252,47 +299,85 @@ export default function Detail() {
                                     margin="dense"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
-                                    >
-                                    {addressStates.map(option => (
+                                    InputProps={{ readOnly: readOnlyState }}
+                                >
+                                    {states.map(option => (
                                         <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
+                                            {option.label}
                                         </MenuItem>
                                     ))}
                                 </TextField>
                             </Grid>
                             <Grid item xs={6} sm={3}>
                                 <TextField
-                                    id="address-zipcode"
+                                    id="zipcode"
                                     placeholder="Zip Code"
                                     className={classes.textField}
-                                    value={values.addressZipcode}
-                                    onChange={handleInputChange('address-zipcode')}
+                                    value={values.zipcode}
+                                    onChange={handleInputChange('zipcode')}
                                     margin="dense"
+                                    fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     id="notes"
                                     placeholder="Notes"
+                                    className={classes.textField}
+                                    value={values.notes}
+                                    onChange={handleInputChange('notes')}
                                     fullWidth
                                     multiline
                                     rows="4"
                                     margin="dense"
                                     InputLabelProps={{ shrink: true }}
-                                    InputProps={{ readOnly: true }}
+                                    InputProps={{ readOnly: readOnlyState }}
                                 />
                             </Grid>
                         </Grid>
                     </form>
-                </Grid>
 
-                <Grid item xs={12} sm={6}>
-                    {/* preview component */}
+                        <Grid item xs={12}>
+                            <Grid container justify="space-between">
+                                <Tooltip title="Go Back">
+                                    <IconButton
+                                        className={classes.iconButton}
+                                        aria-label="ArrowBack"
+                                        onClick={() => { goBack() }}
+                                        disabled={!buttonDisable}
+                                    >
+                                        <ArrowBack className={classes.iconHover} color="inherit" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Update">
+                                    <IconButton
+                                        className={classes.iconButton}
+                                        aria-label="Update"
+                                        disabled={buttonDisable}
+                                    >
+                                        <CheckCircle className={classes.iconHover} color="inherit" />
+                                    </IconButton>
+                                </Tooltip>                                    
+                                <Tooltip title="Edit">
+                                    <IconButton
+                                        className={classes.iconButton}
+                                        aria-label="Edit"
+                                        onClick={handleEdit}
+                                    >
+                                        <Edit className={classes.iconHover} color="inherit" />
+                                    </IconButton>
+                                </Tooltip>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                        {/* preview component */}
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Paper>
         </Container>
         </React.Fragment>
     );

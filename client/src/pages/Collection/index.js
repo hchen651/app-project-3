@@ -86,11 +86,6 @@ const filters = [
     // },
 ];
 
-// all cards data (need mongoDB)
-function createData( id, name, title ) {
-    return { id, name, title };
-}
-
 // display all cards
 function Collection() {
     const classes = useStyles();
