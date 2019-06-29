@@ -3,7 +3,8 @@
 #### [__Imprint__](https://project-imprint.herokuapp.com/) is a business card collector and organizer that features dynamically displayed and updated information.
 
 ### Why Business Cards
-_(content pending)_
+Business cards are fundamental pieces of social interactions amongst the employed population. From office workers to stockbrokers, a chance encounter usually means an exchange of cards will punctuate the interaction. And yet, these stylish yet subtle slices of a person’s professional information can get lost easily when you accrue dozens of them over the course of a work week. 
+Our mission is to create an app in which a user needs only to place another business card into the frame of their smartphone’s camera before a brief scan transfers all the information from the card to the app. All the information such as the card owner’s name, company name, and contact information will be neatly organized and displayed through Imprint and ready to be viewed with ease.
 
 ## How Does It Work
 
@@ -32,7 +33,7 @@ _(content pending)_
 ## Credits
 
 ### Team Members
-[Henry Chen](https://github.com/hchen651), [Rachael Tseng](https://github.com/hojungt), [Marusol Lee](https://github.com/marulee), and [Richard Hu](https://github.com/rzhanghu64).
+[Henry Chen](https://github.com/hchen651), [Rachael Tseng](https://github.com/hojungt), Marusol Lee, and Richard Hu.
 
 ### Special Thanks
 Pete Tascio and Michael Russo for all of their patience and support toward the development of the project.
