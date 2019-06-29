@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import axios from 'axios';
 import Camera, { FACING_MODES, IMAGE_TYPES } from 'react-html5-camera-photo';
+import placeholderCard from '../../images/placeholdercard.jpg';
 
 // Components
 import Navbar2 from "../../components/Navbar2";
@@ -517,10 +518,15 @@ export default function Detail({ location }) {
                             <Card>
                                 <CardMedia
                                     className={classes.media}
-                                    image="./images/placeholdercard.jpg"
+                                    component="img"
+                                    image={require('../../images/placeholdercard.jpg')}
                                     title="card1"
+                                    
                                 />
                             </Card>
+                            {/* <Card>
+                                <img src={placeholderCard} with={'100%'} alt="BusinessCard" />;
+                            </Card> */}
                             {/* preview component */}
                             <Camera
                                 idealFacingMode={FACING_MODES.ENVIRONMENT}
