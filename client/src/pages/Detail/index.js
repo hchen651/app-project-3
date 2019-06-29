@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import axios from 'axios';
+import Camera from 'react-html5-camera-photo';
 
 // Components
 import Navbar2 from "../../components/Navbar2";
@@ -174,7 +175,7 @@ export default function Detail({ location }) {
         if (location.props) {
             setValues(location.props)
         }
-    })
+    }, [location.props._id])
 
     // When ArrowBack button is clicked, set reRender state to true
     const goBack = () => {
@@ -203,6 +204,16 @@ export default function Detail({ location }) {
         );
     }
 
+    // Update card with edited params
+    const updateCard = (id) => {
+        axios.put(`/api/cards/${id}`, values)
+        .then(res => {
+            alert("Updated Records!");
+        })
+        .catch(err =>
+            console.log("PUT error /api/cards/:id")
+        );
+    };
 
     return (
         <React.Fragment>
@@ -432,6 +443,7 @@ export default function Detail({ location }) {
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Update"
+                                            //onClick={updateCard(values._id)}
                                             disabled={buttonDisable}
                                         >
                                             <CheckCircle className={classes.iconHover} color="inherit" />
@@ -477,6 +489,9 @@ export default function Detail({ location }) {
 
                         <Grid item xs={12} sm={6}>
                             {/* preview component */}
+                            <Camera
+                                onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }}
+                            />
                         </Grid>
                     </Grid>
                 </Paper>
