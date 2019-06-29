@@ -70,7 +70,7 @@ export default function ButtonAppBar() {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        <ListItemLink href="/">
+        <ListItemLink href="/collection">
           <ListItemText primary="Home" />
         </ListItemLink>
       </List>
