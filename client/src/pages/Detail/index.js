@@ -432,7 +432,6 @@ export default function Detail({ location }) {
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Update"
-                                            onClick={handleOpen}
                                             disabled={buttonDisable}
                                         >
                                             <CheckCircle className={classes.iconHover} color="inherit" />
