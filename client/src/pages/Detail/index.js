@@ -24,6 +24,9 @@ import ArrowBack from '@material-ui/icons/ArrowBack';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import Tooltip from '@material-ui/core/Tooltip';
 import Delete from '@material-ui/icons/Delete';
+import PhotoCamera from '@material-ui/icons/PermMedia';
+import CaptureButton from '@material-ui/icons/PhotoCamera';
+
 
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -146,7 +149,7 @@ export default function Detail({ location }) {
 
     // console.log(readOnlyState);
     // console.log(buttonDisable);
-    
+
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
     };
@@ -198,23 +201,23 @@ export default function Detail({ location }) {
     // Delete entry from db
     const deleteEntry = (id) => {
         axios.delete(`/api/cards/${id}`)
-        .then(res => {
-            window.location.assign('/collection/');
-        })
-        .catch(err =>
-            console.log("DELETE error /api/cards/:id")
-        );
+            .then(res => {
+                window.location.assign('/collection/');
+            })
+            .catch(err =>
+                console.log("DELETE error /api/cards/:id")
+            );
     }
 
     // Update card with edited params
     const updateCard = (id) => {
         axios.put(`/api/cards/${id}`, values)
-        .then(res => {
-            //alert("Updated Records!");
-        })
-        .catch(err =>
-            console.log("PUT error /api/cards/:id")
-        );
+            .then(res => {
+                //alert("Updated Records!");
+            })
+            .catch(err =>
+                console.log("PUT error /api/cards/:id")
+            );
     };
 
     return (
@@ -426,7 +429,7 @@ export default function Detail({ location }) {
                                             className={classes.iconButton}
                                             aria-label="ArrowBack"
                                             onClick={() => { goBack() }}
-                                            //disabled={!buttonDisable}
+                                        //disabled={!buttonDisable}
                                         >
                                             <ArrowBack className={classes.iconHover} color="inherit" />
                                         </IconButton>
@@ -446,22 +449,43 @@ export default function Detail({ location }) {
                                             className={classes.iconButton}
                                             aria-label="Update"
                                             onClick={updateCard(values._id)}
-                                            // disabled={buttonDisable}
+                                            disabled={buttonDisable}
                                         >
                                             <CheckCircle className={classes.iconHover} color="inherit" />
                                         </IconButton>
-                                    </Tooltip>                                    
+                                    </Tooltip>
                                     <Tooltip title="Edit">
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Edit"
                                             onClick={handleEdit}
-                                            // onClick={handleBtnDisable}
-                                            // disabled={buttonDisable}
+                                        // onClick={handleBtnDisable}
+                                        // disabled={buttonDisable}
                                         >
                                             <Edit className={classes.iconHover} color="inherit" />
                                         </IconButton>
                                     </Tooltip>
+                                    <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                                    <Tooltip title="Upload Image">
+                                        <label htmlFor="icon-button-file">
+                                            <IconButton
+                                                className={classes.iconButton}
+                                                aria-label="Upload picture"
+                                                component="span"
+                                            >
+                                                <PhotoCamera className={classes.iconHover} color="inherit" style={{ fontSize: 30 }} />
+                                            </IconButton>
+                                        </label>
+                                    </Tooltip>
+                                    <Tooltip title="Capture Image">
+                                        <IconButton
+                                            className={classes.iconButton}
+                                            aria-label="CaptureImage"
+                                        >
+                                            <CaptureButton className={classes.iconHover} color="inherit" />
+                                        </IconButton>
+                                    </Tooltip>
+
                                     <Modal
                                         aria-labelledby="simple-modal-title"
                                         aria-describedby="simple-modal-description"
@@ -472,12 +496,12 @@ export default function Detail({ location }) {
                                             <Typography variant="h6" id="modal-title">
                                                 Are you sure you want to delete this card?
                                             </Typography>
-                                            <Button 
+                                            <Button
                                                 className={classes.iconButton}
                                                 onClick={() => deleteEntry(values._id)}>
                                                 Yes
                                             </Button>
-                                            <Button 
+                                            <Button
                                                 className={classes.iconButton}
                                                 onClick={handleClose}>
                                                 No
@@ -490,27 +514,28 @@ export default function Detail({ location }) {
                         </Grid>
 
                         <Grid item xs={12} sm={6}>
-                            {/* preview component */}
-                            <Camera
-                                idealFacingMode = {FACING_MODES.ENVIRONMENT}
-                                idealResolution = {{width: 640, height: 480}}
-                                imageType = {IMAGE_TYPES.JPG}
-                                imageCompression = {0.97}
-                                isMaxResolution = {false}
-                                isImageMirror = {false}
-                                isSilentMode = {true}
-                                isDisplayStartCameraError = {true}
-                                isFullscreen = {true}
-                                sizeFactor = {1}
-                                onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }}
-                            />
                             <Card>
                                 <CardMedia
                                     className={classes.media}
-                                    image="./public/images/placeholdercard.jpg"
+                                    image="./images/placeholdercard.jpg"
                                     title="card1"
                                 />
                             </Card>
+                            {/* preview component */}
+                            <Camera
+                                idealFacingMode={FACING_MODES.ENVIRONMENT}
+                                idealResolution={{ width: 480, height: 240 }}
+                                imageType={IMAGE_TYPES.JPG}
+                                imageCompression={0.97}
+                                isMaxResolution={false}
+                                isImageMirror={false}
+                                isSilentMode={true}
+                                isDisplayStartCameraError={true}
+                                isFullscreen={true}
+                                sizeFactor={1}
+                                onTakePhoto={(dataUri) => { this.onTakePhoto(dataUri); }}
+                            />
+
                         </Grid>
                     </Grid>
                 </Paper>
