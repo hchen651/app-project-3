@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // Component
 import BusinessCardS from '../../components/BusinessCardS';
