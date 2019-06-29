@@ -90,7 +90,7 @@ export default function Detail() {
     const classes = useStyles();
 
     const [values, setValues] = React.useState({
-        cardType: 'personal',
+        cardType: 'Personal',
         firstName: '',
         lastName: '',
         companyName: '',
@@ -111,6 +111,7 @@ export default function Detail() {
     const [goBackClick, setGoBackClick] = useState(false);
     const [open, setOpen] = useState(false);
     const [buttonDisable, setButtonDisable] = useState(true);
+    const [editChange, setEditChange] = useState(false);
     
     const handleInputChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
@@ -122,6 +123,16 @@ export default function Detail() {
         setButtonDisable(!buttonDisable);
 
     }
+
+    useEffect(() => {
+        axios.get(`/api/users/${'5d16c8bec88f56279c49d003'}`)
+        .then(res => {
+            setValues(res.data);
+        })
+        .catch(err =>
+            console.log("GET error /api/cards/:id")
+        );
+    }, [editChange])
     
     // When ArrowBack button is clicked, set reRender state to true
     const goBack = () => {

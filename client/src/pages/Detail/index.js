@@ -210,7 +210,7 @@ export default function Detail({ location }) {
     const updateCard = (id) => {
         axios.put(`/api/cards/${id}`, values)
         .then(res => {
-            alert("Updated Records!");
+            //alert("Updated Records!");
         })
         .catch(err =>
             console.log("PUT error /api/cards/:id")
@@ -426,7 +426,7 @@ export default function Detail({ location }) {
                                             className={classes.iconButton}
                                             aria-label="ArrowBack"
                                             onClick={() => { goBack() }}
-                                            disabled={!buttonDisable}
+                                            //disabled={!buttonDisable}
                                         >
                                             <ArrowBack className={classes.iconHover} color="inherit" />
                                         </IconButton>
@@ -445,8 +445,8 @@ export default function Detail({ location }) {
                                         <IconButton
                                             className={classes.iconButton}
                                             aria-label="Update"
-                                            //onClick={updateCard(values._id)}
-                                            disabled={buttonDisable}
+                                            onClick={updateCard(values._id)}
+                                            // disabled={buttonDisable}
                                         >
                                             <CheckCircle className={classes.iconHover} color="inherit" />
                                         </IconButton>
